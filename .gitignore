@@ -1,14 +1,5 @@
-
+.DS_Store
 flintx-scripts.iml
-setup/docker/configs/holger-1-event.json
-setup/docker/configs/holger-1-inventory.json
-setup/docker/configs/holger-1-product.json
-setup/kubernetes/configs/templates/holger-1-event.json
-setup/kubernetes/configs/templates/holger-1-inventory.json
-setup/kubernetes/configs/templates/holger-1-product.json
-setup/kubernetes/configs/.DS_Store
-setup/docker/secrets/holger-1.json
-setup/kubernetes/secrets/templates/holger-1.json
-setup/kubernetes/secrets/templates/eslaunch-1.json
-setup/kubernetes/services/.DS_Store
+**/holger-1*.json
+**/eslaunch-1*.json
 setup/kubernetes/configs/templates/holger-1-webhook.json
