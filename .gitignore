@@ -11,3 +11,4 @@ setup/docker/secrets/holger-1.json
 setup/kubernetes/secrets/templates/holger-1.json
 setup/kubernetes/secrets/templates/eslaunch-1.json
 setup/kubernetes/services/.DS_Store
+setup/kubernetes/configs/templates/holger-1-webhook.json
