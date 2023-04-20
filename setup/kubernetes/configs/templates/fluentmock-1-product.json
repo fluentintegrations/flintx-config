@@ -1,0 +1,14 @@
+{
+  "kind": "ConfigMap",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "fluentmock-1-product"
+  },
+  "data": {
+    "fluent.product.upsert.event.name":"UPSERT_PRODUCT",
+    "fluent.category.upsert.event.name":"UPSERT_CATEGORY",
+    "fluent.product.catalogue.ref":"PC:MASTER:1",
+    "fluent.product.catalogue.type":"PRODUCT_CATALOGUE",
+    "fluent.product.catalogue.subtype":"MASTER"
+  }
+}

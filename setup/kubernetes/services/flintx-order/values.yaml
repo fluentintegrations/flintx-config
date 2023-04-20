@@ -1,0 +1,28 @@
+---
+app:
+  serviceType: ClusterIP
+  image: fluentintegrations/flintx-order:1.3.0
+  name: flintx-order
+  version: 1.3.0
+  namespace: flintx
+  port: 8087
+  livenessProbe:
+    failureThreshold: 3
+    periodSeconds: 30
+    timeoutSeconds: 10
+    successThreshold: 1
+    initialDelaySeconds: 30
+    httpGet:
+      path: /q/health/live
+      scheme: HTTP
+      port: 8087
+  readinessProbe:
+    failureThreshold: 3
+    timeoutSeconds: 10
+    periodSeconds: 45
+    successThreshold: 1
+    initialDelaySeconds: 45
+    httpGet:
+      path: /q/health/ready
+      scheme: HTTP
+      port: 8087

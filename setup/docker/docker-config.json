@@ -1,0 +1,120 @@
+{
+  "version": "1.3.0",
+  "storage": "flintxStorage",
+  "network": "flintxNetwork"
+  "services": [
+    {
+      "name": "flintx-fluent-mock",
+      "port": "8089",
+      "ip": "172.21.0.10",
+      "parameters": [],
+      "secrets": [],
+      "configs": []
+    },
+    {
+      "name": "flintx-auth",
+      "port": "8081",
+      "ip": "172.21.0.2",
+      "parameters": [
+        "--mount source=flintxStorage,target=/config",
+        "-e mock.api.url=http://172.21.0.10:8089",
+        "-e flintx.secret.folder=/config/",
+        "-e flintx.config.method=docker"
+      ],
+      "secrets": [
+        "holger-1.json",
+        "fluentmock-1.json"
+      ],
+      "configs": []
+    },
+    {
+      "name": "flintx-event",
+      "port": "8082",
+      "ip": "172.21.0.3",
+      "parameters": [
+        "--mount source=flintxStorage,target=/config",
+        "-e mock.api.url=http://172.21.0.10:8089",
+        "-e auth-service.url=http://172.21.0.2:8081",
+        "-e flintx.config.folder=/config/",
+        "-e flintx.config.method=docker"
+      ],
+      "secrets": [],
+      "configs": [
+        "holger-1-event.json",
+        "fluentmock-1-event.json"
+      ]
+    },
+    {
+      "name": "flintx-graphql",
+      "port": "8083",
+      "ip": "172.21.0.4",
+      "parameters": [],
+      "secrets": [],
+      "configs": []
+    },
+    {
+      "name": "flintx-webhook",
+      "port": "8084",
+      "ip": "172.21.0.5",
+      "parameters": [
+        "-e order-service.url=http://172.21.0.8:8087"
+      ],
+      "secrets": [],
+      "configs": []
+    },
+    {
+      "name": "flintx-inventory",
+      "port": "8085",
+      "ip": "172.21.0.6",
+      "parameters": [
+        "-e mock.api.url=http://172.21.0.10:8089",
+        "-e auth-service.url=http://172.21.0.2:8081",
+        "-e event-service.url=http://172.21.0.3:8082",
+        "-e flintx.config.folder=/config/",
+        "-e flintx.config.method=docker"
+      ],
+      "secrets": [],
+      "configs": [
+        "fluentmock-1-inventory.json",
+        "holger-1-inventory.json"
+      ]
+    },
+    {
+      "name": "flintx-product",
+      "port": "8086",
+      "ip": "172.21.0.7",
+      "parameters": [
+        "--mount source=flintxStorage,target=/config",
+        "-e mock.api.url=http://172.21.0.10:8089",
+        "-e event-service.url=http://172.21.0.3:8082",
+        "-e flintx.config.folder=/config/",
+        "-e flintx.config.method=docker"
+      ],
+      "secrets": [],
+      "configs": [
+        "holger-1-product.json",
+        "fluentmock-1-product.json"
+      ]
+    },
+    {
+      "name": "flintx-order",
+      "port": "8087",
+      "ip": "172.21.0.8",
+      "parameters": [
+        "-e graphql-service.url=http://172.21.0.4:8083"
+      ],
+      "secrets": [],
+      "configs": []
+    },
+    {
+      "name": "flintx-batch",
+      "port": "8088",
+      "ip": "172.21.0.9",
+      "parameters": [
+        "-e graphql-service.url=http://172.21.0.4:8083"
+      ],
+      "secrets": [],
+      "configs": []
+    }
+  ]
+}

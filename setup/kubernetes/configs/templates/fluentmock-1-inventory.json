@@ -1,0 +1,13 @@
+{
+  "kind": "ConfigMap",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "fluentmock-1-inventory"
+  },
+  "data": {
+    "fluent.inventory.delta.event.name":"INVENTORY_DELTA",
+    "fluent.inventory.catalogue.ref":"DEFAULT:1",
+    "fluent.inventory.catalogue.type":"INVENTORY_CATALOGUE",
+    "fluent.inventory.catalogue.subtype":"DEFAULT"
+  }
+}

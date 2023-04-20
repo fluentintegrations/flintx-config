@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    app.quarkus.io/commit-id: dd0dd1e24a11628150f9e24e780e5ae6c5c7f73f
+    app.quarkus.io/build-timestamp: 2023-04-06 - 01:43:55 +0000
+  labels:
+    app.kubernetes.io/name: {{ .Values.app.name }}
+    app.kubernetes.io/version: {{ .Values.app.version }}
+  name: {{ .Values.app.name }}
+  namespace: {{ .Values.app.namespace }}
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: {{ .Values.app.name }}
+                port:
+                  name: http
+            path: /
+            pathType: Prefix
