@@ -2,4 +2,3 @@
 flintx-scripts.iml
 **/holger-1*.json
 **/eslaunch-1*.json
-setup/kubernetes/configs/templates/holger-1-webhook.json
