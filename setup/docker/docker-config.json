@@ -1,7 +1,7 @@
 {
-  "version": "1.3.0",
+  "version": "1.0.0",
   "storage": "flintxStorage",
-  "network": "flintxNetwork"
+  "network": "flintxNetwork",
   "services": [
     {
       "name": "flintx-fluent-mock",
@@ -19,7 +19,7 @@
         "--mount source=flintxStorage,target=/config",
         "-e mock.api.url=http://172.21.0.10:8089",
         "-e flintx.secret.folder=/config/",
-        "-e flintx.config.method=docker"
+        "-e flintx.secret.method=docker"
       ],
       "secrets": [
         "holger-1.json",

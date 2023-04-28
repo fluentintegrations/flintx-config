@@ -1,5 +1,7 @@
 #! /bin/bash
-configFile="kubernetes-config.json"
+
+configFile=$1; shift
+
 flintxServices=$(jq '.services' ${configFile})
 flintxVersion=$(jq -r '.version' ${configFile})
 flintxDockerNetworkName=$(jq -r '.namespace' ${configFile})

@@ -1,9 +1,9 @@
 ---
 app:
   serviceType: ClusterIP
-  image: fluentintegrations/flintx-batch:1.3.0
+  image: fluentintegrations/flintx-batch:1.0.0
   name: flintx-batch
-  version: 1.3.0
+  version: 1.0.0
   namespace: flintx
   port: 8088
   livenessProbe:
