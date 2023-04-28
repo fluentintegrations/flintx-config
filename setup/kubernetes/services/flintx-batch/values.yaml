@@ -1,10 +1,11 @@
 ---
 app:
-  serviceType: ClusterIP
+  serviceType: NodePort
   image: fluentintegrations/flintx-batch:1.0.0
   name: flintx-batch
   version: 1.0.0
   namespace: flintx
+  host: flintx-batch.co
   port: 8088
   livenessProbe:
     failureThreshold: 3

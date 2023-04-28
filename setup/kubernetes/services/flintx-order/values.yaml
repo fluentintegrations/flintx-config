@@ -1,10 +1,11 @@
 ---
 app:
-  serviceType: ClusterIP
+  serviceType: NodePort
   image: fluentintegrations/flintx-order:1.0.0
   name: flintx-order
   version: 1.0.0
   namespace: flintx
+  host: flintx-order.co
   port: 8087
   livenessProbe:
     failureThreshold: 3

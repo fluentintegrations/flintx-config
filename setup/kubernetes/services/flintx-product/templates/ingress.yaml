@@ -12,7 +12,8 @@ metadata:
   namespace: {{ .Values.app.namespace }}
 spec:
   rules:
-    - http:
+    - host: {{ .Values.app.host }}
+      http:
         paths:
           - backend:
               service:
