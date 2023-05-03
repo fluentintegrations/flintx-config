@@ -5,7 +5,7 @@ GraphQL Integrations
 ```
 
 export FI_IDENTIFIER=fluentmock-1
-export FI_GRAPHQL_HOST=
+export FI_GRAPHQL_HOST=127.0.0.1:8083
 
 curl --location --request POST http://$FI_GRAPHQL_HOST/graphql/mutation \
 --header 'Content-Type: application/json' \
