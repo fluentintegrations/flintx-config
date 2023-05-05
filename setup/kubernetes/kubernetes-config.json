@@ -12,7 +12,6 @@
       "name": "flintx-auth",
       "port": "8081",
       "secrets": [
-        "holger-1.json",
         "fluentmock-1.json"
       ],
       "configs": []
@@ -22,7 +21,6 @@
       "port": "8082",
       "secrets": [],
       "configs": [
-        "holger-1-event.json",
         "fluentmock-1-event.json"
       ]
     },
@@ -43,8 +41,7 @@
       "port": "8085",
       "secrets": [],
       "configs": [
-        "fluentmock-1-inventory.json",
-        "holger-1-inventory.json"
+        "fluentmock-1-inventory.json"
       ]
     },
     {
@@ -52,7 +49,6 @@
       "port": "8086",
       "secrets": [],
       "configs": [
-        "holger-1-product.json",
         "fluentmock-1-product.json"
       ]
     },
