@@ -44,4 +44,9 @@ curl --location --request POST http://$FI_ORDER_HOST/order/create \
     "primaryPhone": "+61123456789"
   }
 }'
+
+curl --location --request POST http://$FI_ORDER_HOST/order/webhook \
+--header 'Content-Type: application/json' \
+--header "identifier: $FI_IDENTIFIER" \
+--data-raw '{"id":"5f7fa2bd-39b2-4105-98f4-29b6ca3afc98","name":"OrderStatus","accountId":"FLINTX","retailerId":"1","entityId":"1`","entityRef":"FLINTX_1","entityType":"ORDER","entityStatus":"COMPLETE","type":"NORMAL","attributes":{},"meta":{"mode":"SYNC","simulation":false,"models":[]},"trailLogs":[],"errorLogs":[],"rootEntityId":"1","rootEntityType":"ORDER","rootEntityRef":"FLINTX_1"}'
 ```
