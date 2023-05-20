@@ -1,8 +1,7 @@
 #! /bin/bash
 
 configFile=$1; shift
-flintxServices=$(jq '.services' ${configFile})
-flintxVersion=$(jq -r '.version' ${configFile})
+flintxServices=("$@")
 flintxDockerNetworkName=$(jq -r '.network' ${configFile})
 flintxDockerVolumeName=$(jq -r '.storage' ${configFile})
 
@@ -20,36 +19,46 @@ if [[ ! $(docker volume ls | grep "${flintxDockerVolumeName}") ]]; then
 else
   echo "Volume ${flintxDockerVolumeName} already exists."
 fi
+if [[ "${flintxServices[0]}" == "all" ]]; then
+  flintxServices=($(jq -r '.services[] | .name' ${configFile}))
+fi
 
-for service in $(echo "${flintxServices}" | jq -r '.[] | @base64'); do
+for flintxService in "${flintxServices[@]}"; do
   _service() {
-    echo "${service}" | base64 --decode | jq -r "${1}"
+    echo "${flintxServiceJson}" | base64 --decode | jq -r "${1}"
   }
+  echo "Configuring service: ${flintxService}"
+  flintxServiceJson=$(jq -r --arg flintxService $flintxService '.services[] | select(.name == $flintxService) | @base64' ${configFile})
   flintxServiceName=$(_service '.name')
+  flintxServiceVersion=$(_service '.version')
   flintxServicePort=$(_service '.port')
   flintxServiceIP=$(_service '.ip')
   flintxServiceParameters=$(_service '.parameters[]')
   flintxServiceSecrets=$(_service '.secrets')
   flintxServiceConfigs=$(_service '.configs')
-
   if [[ ! $(docker ps --filter "name=${flintxServiceName}" | grep "${flintxServiceName}") ]]; then
     echo "Starting container ${flintxServiceName}."
   else
     echo "Restarting container ${flintxServiceName}."
     stopped=$(docker stop "${flintxServiceName}")
   fi
-  containerId=$(docker run -d --rm -p ${flintxServicePort}:${flintxServicePort} --ip=${flintxServiceIP} \
+  containerId=$(docker run -d --rm --platform linux/x86_64 -p ${flintxServicePort}:${flintxServicePort} --ip=${flintxServiceIP} \
     --net ${flintxDockerNetworkName} --name=${flintxServiceName} \
     ${flintxServiceParameters} \
-    fluentintegrations/${flintxServiceName}:${flintxVersion})
+    fluentintegrations/${flintxServiceName}:${flintxServiceVersion})
   echo "Started container ${flintxServiceName} id:${containerId}"
 
   for secret in $(echo "${flintxServiceSecrets}" | jq -r '.[] | @base64'); do
-    secretFile=$(echo "${secret}" | base64 --decode)
-    docker cp secrets/"${secretFile}" "${flintxServiceName}":/config
+    echo "uploading secret ${secret}" | base64 --decode
+    serviceSecretFile=$(echo "${secret}" | base64 --decode)
+    docker cp secrets/"${serviceSecretFile}" "${flintxServiceName}":/config
   done
+
   for config in $(echo "${flintxServiceConfigs}" | jq -r '.[] | @base64'); do
-    configFile=$(echo "${config}" | base64 --decode)
-    docker cp configs/"${configFile}" "${flintxServiceName}":/config
+    echo "uploading config ${config}" | base64 --decode
+    serviceConfigFile=$(echo "${config}" | base64 --decode)
+    docker cp configs/"${serviceConfigFile}" "${flintxServiceName}":/config
   done
+
+  echo "Done service: ${flintxServiceName}"
 done
