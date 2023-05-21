@@ -23,7 +23,6 @@
         "-e flintx.secret.method=docker"
       ],
       "secrets": [
-        "holger-1.json",
         "fluentmock-1.json"
       ],
       "configs": []
@@ -42,7 +41,6 @@
       ],
       "secrets": [],
       "configs": [
-        "holger-1-event.json",
         "fluentmock-1-event.json"
       ]
     },
@@ -85,8 +83,7 @@
       ],
       "secrets": [],
       "configs": [
-        "fluentmock-1-inventory.json",
-        "holger-1-inventory.json"
+        "fluentmock-1-inventory.json"
       ]
     },
     {
@@ -103,7 +100,6 @@
       ],
       "secrets": [],
       "configs": [
-        "holger-1-product.json",
         "fluentmock-1-product.json"
       ]
     },
