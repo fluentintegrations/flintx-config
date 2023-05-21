@@ -1,22 +1,21 @@
 #! /bin/bash
 
 configFile=$1; shift
-
-flintxServices=$(jq '.services' ${configFile})
-flintxVersion=$(jq -r '.version' ${configFile})
+flintxServices=("$@")
 flintxDockerNetworkName=$(jq -r '.network' ${configFile})
 flintxDockerVolumeName=$(jq -r '.storage' ${configFile})
 
-for service in $(echo "${flintxServices}" | jq -r '.[] | @base64'); do
+if [[ "${flintxServices[0]}" == "all" ]]; then
+  flintxServices=($(jq -r '.services[] | .name' ${configFile}))
+fi
+for flintxService in "${flintxServices[@]}"; do
   _service() {
-    echo "${service}" | base64 --decode | jq -r "${1}"
+    echo "${flintxServiceJson}" | base64 --decode | jq -r "${1}"
   }
+  echo "Uninstalling service: ${flintxService}"
+  flintxServiceJson=$(jq -r --arg flintxService $flintxService '.services[] | select(.name == $flintxService) | @base64' ${configFile})
   flintxServiceName=$(_service '.name')
-  flintxServicePort=$(_service '.port')
-  flintxServiceIP=$(_service '.ip')
-  flintxServiceParameters=$(_service '.parameters[]')
-  flintxServiceSecrets=$(_service '.secrets')
-  flintxServiceConfigs=$(_service '.configs')
+  flintxServiceVersion=$(_service '.version')
 
   if [[ $(docker ps --filter "name=${flintxServiceName}" | grep "${flintxServiceName}") ]]; then
         echo "Stopping & deleting container ${flintxServiceName}."
