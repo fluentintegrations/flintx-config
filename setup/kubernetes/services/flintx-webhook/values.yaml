@@ -5,7 +5,7 @@ app:
   name: flintx-webhook
   version: 1.0.0
   namespace: flintx
-  host: flintx-webhook.co
+  host: flintx-webhook.io
   port: 8084
   livenessProbe:
     failureThreshold: 3

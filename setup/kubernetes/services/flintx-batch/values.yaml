@@ -5,7 +5,7 @@ app:
   name: flintx-batch
   version: 1.0.0
   namespace: flintx
-  host: flintx-batch.co
+  host: flintx-batch.io
   port: 8088
   livenessProbe:
     failureThreshold: 3

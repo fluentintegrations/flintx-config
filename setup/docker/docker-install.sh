@@ -42,7 +42,13 @@ for flintxService in "${flintxServices[@]}"; do
     echo "Restarting container ${flintxServiceName}."
     stopped=$(docker stop "${flintxServiceName}")
   fi
-  containerId=$(docker run -d --rm --platform linux/x86_64 -p ${flintxServicePort}:${flintxServicePort} --ip=${flintxServiceIP} \
+    
+    # containerId=$(docker run -d --rm --platform linux/x86_64 -p ${flintxServicePort}:${flintxServicePort} --ip=${flintxServiceIP} \
+    # --net ${flintxDockerNetworkName} --name=${flintxServiceName} \
+    # ${flintxServiceParameters} \
+    # fluentintegrations/${flintxServiceName}:${flintxServiceVersion})
+
+  containerId=$(docker run -d --rm -p ${flintxServicePort}:${flintxServicePort} --ip=${flintxServiceIP} \
     --net ${flintxDockerNetworkName} --name=${flintxServiceName} \
     ${flintxServiceParameters} \
     fluentintegrations/${flintxServiceName}:${flintxServiceVersion})

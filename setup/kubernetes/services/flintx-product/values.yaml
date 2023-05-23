@@ -5,7 +5,7 @@ app:
   name: flintx-product
   version: 1.0.0
   namespace: flintx
-  host: flintx-product.co
+  host: flintx-product.io
   port: 8086
   livenessProbe:
     failureThreshold: 3
