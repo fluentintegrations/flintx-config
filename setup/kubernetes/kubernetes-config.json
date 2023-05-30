@@ -3,71 +3,71 @@
   "services": [
     {
       "name": "flintx-fluent-mock",
-      "version": "0.6.0-arm64",
+      "version": "0.7.0-arm64",
       "port": "8089",
       "secrets": [],
       "configs": []
     },
     {
       "name": "flintx-auth",
-      "version": "0.5.0-arm64",
+      "version": "0.7.0-arm64",
       "port": "8081",
       "secrets": [
-        "fluentmock-1.json"
+        "fluentmock-1"
       ],
       "configs": []
     },
     {
       "name": "flintx-event",
-      "version": "0.5.0-arm64",
+      "version": "0.7.0-arm64",
       "port": "8082",
       "secrets": [],
       "configs": [
-        "fluentmock-1-event.json"
+        "fluentmock-1-event"
       ]
     },
     {
       "name": "flintx-graphql",
-      "version": "0.5.0-arm64",
+      "version": "0.7.0-arm64",
       "port": "8083",
       "secrets": [],
       "configs": []
     },
     {
       "name": "flintx-webhook",
-      "version": "0.5.0-arm64",
+      "version": "0.7.0-arm64",
       "port": "8084",
       "secrets": [],
       "configs": []
     },
     {
       "name": "flintx-inventory",
-      "version": "0.6.0-arm64",
+      "version": "0.7.0-arm64",
       "port": "8085",
       "secrets": [],
       "configs": [
-        "fluentmock-1-inventory.json"
+        "fluentmock-1-inventory"
       ]
     },
     {
       "name": "flintx-product",
-      "version": "0.6.0-arm64",
+      "version": "0.7.0-arm64",
       "port": "8086",
       "secrets": [],
       "configs": [
-        "fluentmock-1-product.json"
+        "fluentmock-1-product"
       ]
     },
     {
       "name": "flintx-order",
-      "version": "0.5.0-arm64",
+      "version": "0.7.0-arm64",
       "port": "8087",
       "secrets": [],
       "configs": []
     },
     {
       "name": "flintx-batch",
-      "version": "0.6.0-arm64",
+      "version": "0.7.0-arm64",
       "port": "8088",
       "secrets": [],
       "configs": []

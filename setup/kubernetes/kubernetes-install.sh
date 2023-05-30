@@ -28,17 +28,10 @@ for flintxService in "${flintxServices[@]}"; do
   --set app.version="${flintxServiceVersion}" \
   --set app.image="fluentintegrations/${flintxServiceName}:${flintxServiceVersion}" \
   "${flintxServiceName}" "./services/${flintxServiceName}" -n "${flintxNamespace}"
-
-  for secret in $(echo "${flintxServiceSecrets}" | jq -r '.[] | @base64'); do
-    if [ -n "${secret}" ]; then
-      helm install flintx-secrets ./secrets -n "${flintxNamespace}";
-    fi
-  done
-
-  for config in $(echo "${flintxServiceConfigs}" | jq -r '.[] | @base64'); do
-    if [ -n "${config}" ]; then
-      helm install flintx-configs ./configs -n "${flintxNamespace}";
-    fi
-  done
 done
+
+if [[ "${flintxServices[0]}" == "all" ]]; then
+  helm install flintx-configs ./configs -n "${flintxNamespace}";
+  helm install flintx-secrets ./secrets -n "${flintxNamespace}";
+fi
 

@@ -17,17 +17,9 @@ for flintxService in "${flintxServices[@]}"; do
   flintxServiceConfigs=$(_service '.configs')
 
   helm uninstall "${flintxServiceName}" -n "${flintxNamespace}"
-
-  for secret in $(echo "${flintxServiceSecrets}" | jq -r '.[] | @base64'); do
-    if [ -n "${secret}" ]; then
-      helm uninstall flintx-secrets -n "${flintxNamespace}";
-    fi
-  done
-
-  for config in $(echo "${flintxServiceConfigs}" | jq -r '.[] | @base64'); do
-    if [ -n "${config}" ]; then
-      helm uninstall flintx-configs -n "${flintxNamespace}";
-    fi
-  done
 done
 
+if [[ "${flintxServices[0]}" == "all" ]]; then
+  helm uninstall flintx-secrets -n "${flintxNamespace}";
+  helm uninstall flintx-configs -n "${flintxNamespace}";
+fi
