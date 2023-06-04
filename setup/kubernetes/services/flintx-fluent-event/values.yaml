@@ -1,12 +1,11 @@
 ---
 app:
-  serviceType: NodePort
-  image: fluentintegrations/flintx-product:1.0.0
-  name: flintx-product
+  serviceType: ClusterIP
+  image: fluentintegrations/flintx-fluent-event:1.0.0
+  name: flintx-event
   version: 1.0.0
   namespace: flintx
-  host: flintx-product.io
-  port: 8086
+  port: 8082
   livenessProbe:
     failureThreshold: 3
     periodSeconds: 30
@@ -16,7 +15,7 @@ app:
     httpGet:
       path: /q/health/live
       scheme: HTTP
-      port: 8086
+      port: 8082
   readinessProbe:
     failureThreshold: 3
     timeoutSeconds: 10
@@ -26,4 +25,4 @@ app:
     httpGet:
       path: /q/health/ready
       scheme: HTTP
-      port: 8086
+      port: 8082

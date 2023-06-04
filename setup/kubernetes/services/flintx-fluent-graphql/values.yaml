@@ -1,28 +1,28 @@
 ---
 app:
   serviceType: ClusterIP
-  image: fluentintegrations/flintx-auth:1.0.0
-  name: flintx-auth
+  image: fluentintegrations/flintx-fluent-graphql:1.0.0
+  name: flintx-fluent-graphql
   version: 1.0.0
   namespace: flintx
-  port: 8081
+  port: 8083
   livenessProbe:
     failureThreshold: 3
-    periodSeconds: 100
+    periodSeconds: 30
     timeoutSeconds: 10
     successThreshold: 1
-    initialDelaySeconds: 100
+    initialDelaySeconds: 30
     httpGet:
       path: /q/health/live
       scheme: HTTP
-      port: 8081
+      port: 8083
   readinessProbe:
     failureThreshold: 3
     timeoutSeconds: 10
-    periodSeconds: 100
+    periodSeconds: 45
     successThreshold: 1
-    initialDelaySeconds: 100
+    initialDelaySeconds: 45
     httpGet:
       path: /q/health/ready
       scheme: HTTP
-      port: 8081
+      port: 8083

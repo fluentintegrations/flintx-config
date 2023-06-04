@@ -1,12 +1,12 @@
 ---
 app:
   serviceType: NodePort
-  image: fluentintegrations/flintx-batch:1.0.0
-  name: flintx-batch
+  image: fluentintegrations/flintx-fluent-order:1.0.0
+  name: flintx-fluent-order
   version: 1.0.0
   namespace: flintx
-  host: flintx-batch.io
-  port: 8088
+  host: flintx-fluent-order.io
+  port: 8087
   livenessProbe:
     failureThreshold: 3
     periodSeconds: 30
@@ -16,7 +16,7 @@ app:
     httpGet:
       path: /q/health/live
       scheme: HTTP
-      port: 8088
+      port: 8087
   readinessProbe:
     failureThreshold: 3
     timeoutSeconds: 10
@@ -26,4 +26,4 @@ app:
     httpGet:
       path: /q/health/ready
       scheme: HTTP
-      port: 8088
+      port: 8087

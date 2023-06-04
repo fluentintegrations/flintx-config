@@ -1,11 +1,12 @@
 ---
 app:
-  serviceType: ClusterIP
-  image: fluentintegrations/flintx-graphql:1.0.0
-  name: flintx-graphql
+  serviceType: NodePort
+  image: fluentintegrations/flintx-fluent-batch:1.0.0
+  name: flintx-fluent-batch
   version: 1.0.0
   namespace: flintx
-  port: 8083
+  host: flintx-fluent-batch.io
+  port: 8088
   livenessProbe:
     failureThreshold: 3
     periodSeconds: 30
@@ -15,7 +16,7 @@ app:
     httpGet:
       path: /q/health/live
       scheme: HTTP
-      port: 8083
+      port: 8088
   readinessProbe:
     failureThreshold: 3
     timeoutSeconds: 10
@@ -25,4 +26,4 @@ app:
     httpGet:
       path: /q/health/ready
       scheme: HTTP
-      port: 8083
+      port: 8088

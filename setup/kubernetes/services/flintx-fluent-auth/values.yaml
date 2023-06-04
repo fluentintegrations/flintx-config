@@ -1,29 +1,28 @@
 ---
 app:
-  serviceType: NodePort
-  image: fluentintegrations/flintx-inventory:1.0.0
-  name: flintx-inventory
+  serviceType: ClusterIP
+  image: fluentintegrations/flintx-fluent-auth:1.0.0
+  name: flintx-fluent-auth
   version: 1.0.0
   namespace: flintx
-  host: flintx-inventory.io
-  port: 8085
+  port: 8081
   livenessProbe:
     failureThreshold: 3
-    periodSeconds: 30
+    periodSeconds: 100
     timeoutSeconds: 10
     successThreshold: 1
-    initialDelaySeconds: 30
+    initialDelaySeconds: 100
     httpGet:
       path: /q/health/live
       scheme: HTTP
-      port: 8085
+      port: 8081
   readinessProbe:
     failureThreshold: 3
     timeoutSeconds: 10
-    periodSeconds: 45
+    periodSeconds: 100
     successThreshold: 1
-    initialDelaySeconds: 45
+    initialDelaySeconds: 100
     httpGet:
       path: /q/health/ready
       scheme: HTTP
-      port: 8085
+      port: 8081

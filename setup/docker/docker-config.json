@@ -5,7 +5,7 @@
   "services": [
     {
       "name": "flintx-fluent-mock",
-      "version": "0.6.0",
+      "version": "0.7.0-arm64",
       "port": "8089",
       "ip": "172.21.0.10",
       "parameters": [],
@@ -13,8 +13,8 @@
       "configs": []
     },
     {
-      "name": "flintx-auth",
-      "version": "0.5.0",
+      "name": "flintx-fluent-auth",
+      "version": "0.7.0-arm64",
       "port": "8081",
       "ip": "172.21.0.2",
       "parameters": [
@@ -29,8 +29,8 @@
       "configs": []
     },
     {
-      "name": "flintx-event",
-      "version": "0.5.0",
+      "name": "flintx-fluent-event",
+      "version": "0.7.0-arm64",
       "port": "8082",
       "ip": "172.21.0.3",
       "parameters": [
@@ -46,8 +46,8 @@
       ]
     },
     {
-      "name": "flintx-graphql",
-      "version": "0.5.0",
+      "name": "flintx-fluent-graphql",
+      "version": "0.7.0-arm64",
       "port": "8083",
       "ip": "172.21.0.4",
       "parameters": [
@@ -58,8 +58,8 @@
       "configs": []
     },
     {
-      "name": "flintx-webhook",
-      "version": "0.5.0",
+      "name": "flintx-fluent-webhook",
+      "version": "0.7.0-arm64",
       "port": "8084",
       "ip": "172.21.0.5",
       "parameters": [
@@ -71,8 +71,8 @@
       "configs": []
     },
     {
-      "name": "flintx-inventory",
-      "version": "0.6.0",
+      "name": "flintx-fluent-inventory",
+      "version": "0.7.0-arm64",
       "port": "8085",
       "ip": "172.21.0.6",
       "parameters": [
@@ -88,8 +88,8 @@
       ]
     },
     {
-      "name": "flintx-product",
-      "version": "0.5.0",
+      "name": "flintx-fluent-product",
+      "version": "0.7.0-arm64",
       "port": "8086",
       "ip": "172.21.0.7",
       "parameters": [
@@ -105,8 +105,8 @@
       ]
     },
     {
-      "name": "flintx-order",
-      "version": "0.5.0",
+      "name": "flintx-fluent-order",
+      "version": "0.7.0-arm64",
       "port": "8087",
       "ip": "172.21.0.8",
       "parameters": [
@@ -116,8 +116,8 @@
       "configs": []
     },
     {
-      "name": "flintx-batch",
-      "version": "0.6.0",
+      "name": "flintx-fluent-batch",
+      "version": "0.7.0-arm64",
       "port": "8088",
       "ip": "172.21.0.9",
       "parameters": [

@@ -1,12 +1,12 @@
 ---
 app:
   serviceType: NodePort
-  image: fluentintegrations/flintx-webhook:1.0.0
-  name: flintx-webhook
+  image: fluentintegrations/flintx-fluent-inventory:1.0.0
+  name: flintx-fluent-inventory
   version: 1.0.0
   namespace: flintx
-  host: flintx-webhook.io
-  port: 8084
+  host: flintx-fluent-inventory.io
+  port: 8085
   livenessProbe:
     failureThreshold: 3
     periodSeconds: 30
@@ -16,7 +16,7 @@ app:
     httpGet:
       path: /q/health/live
       scheme: HTTP
-      port: 8084
+      port: 8085
   readinessProbe:
     failureThreshold: 3
     timeoutSeconds: 10
@@ -26,4 +26,4 @@ app:
     httpGet:
       path: /q/health/ready
       scheme: HTTP
-      port: 8084
+      port: 8085
