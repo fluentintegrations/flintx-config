@@ -3,6 +3,7 @@ Fluent Event Integration
 #
 ```
 export FI_IDENTIFIER=fluentmock-1
+export FI_IDENTIFIER=holger-1
 export FI_EVENT_HOST=127.0.0.1:8082
 ```
 

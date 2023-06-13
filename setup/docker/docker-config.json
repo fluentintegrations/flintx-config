@@ -5,7 +5,7 @@
   "services": [
     {
       "name": "flintx-fluent-mock",
-      "version": "0.7.0-arm64",
+      "version": "0.8.0-arm64",
       "port": "8089",
       "ip": "172.21.0.10",
       "parameters": [],
@@ -14,14 +14,15 @@
     },
     {
       "name": "flintx-fluent-auth",
-      "version": "0.7.0-arm64",
+      "version": "0.8.0-arm64",
       "port": "8081",
       "ip": "172.21.0.2",
       "parameters": [
         "--mount source=flintxStorage,target=/config",
         "-e mock.api.url=http://172.21.0.10:8089",
+        "-e flintx.platform.type=docker",
         "-e flintx.secret.folder=/config/",
-        "-e flintx.secret.method=docker"
+        "-e flintx.config.folder=/config/"
       ],
       "secrets": [
         "fluentmock-1.json"
@@ -30,15 +31,15 @@
     },
     {
       "name": "flintx-fluent-event",
-      "version": "0.7.0-arm64",
+      "version": "0.8.0-arm64",
       "port": "8082",
       "ip": "172.21.0.3",
       "parameters": [
         "--mount source=flintxStorage,target=/config",
         "-e mock.api.url=http://172.21.0.10:8089",
         "-e auth-service.url=http://172.21.0.2:8081",
-        "-e flintx.config.folder=/config/",
-        "-e flintx.config.method=docker"
+        "-e flintx.platform.type=docker",
+        "-e flintx.config.folder=/config/"
       ],
       "secrets": [],
       "configs": [
@@ -47,10 +48,11 @@
     },
     {
       "name": "flintx-fluent-graphql",
-      "version": "0.7.0-arm64",
+      "version": "0.8.0-arm64",
       "port": "8083",
       "ip": "172.21.0.4",
       "parameters": [
+        "--mount source=flintxStorage,target=/config",
         "-e auth-service.url=http://172.21.0.2:8081",
         "-e mock.api.url=http://172.21.0.10:8089"
       ],
@@ -59,69 +61,84 @@
     },
     {
       "name": "flintx-fluent-webhook",
-      "version": "0.7.0-arm64",
+      "version": "0.8.0-arm64",
       "port": "8084",
       "ip": "172.21.0.5",
       "parameters": [
+        "--mount source=flintxStorage,target=/config",
         "-e order-service.url=http://172.21.0.8:8087",
-        "-e flintx.config.folder=/config/",
-        "-e flintx.config.method=docker"
+        "-e flintx.platform.type=docker",
+        "-e flintx.config.folder=/config/"
       ],
       "secrets": [],
       "configs": []
     },
     {
       "name": "flintx-fluent-inventory",
-      "version": "0.7.0-arm64",
+      "version": "0.8.0-arm64",
       "port": "8085",
       "ip": "172.21.0.6",
       "parameters": [
+        "--mount source=flintxStorage,target=/config",
         "-e mock.api.url=http://172.21.0.10:8089",
         "-e auth-service.url=http://172.21.0.2:8081",
         "-e event-service.url=http://172.21.0.3:8082",
-        "-e flintx.config.folder=/config/",
-        "-e flintx.config.method=docker"
+        "-e flintx.platform.type=docker",
+        "-e flintx.secret.folder=/config/",
+        "-e flintx.config.folder=/config/"
       ],
-      "secrets": [],
+      "secrets": [
+        "flintx-environment.json"
+      ],
       "configs": [
         "fluentmock-1-inventory.json"
       ]
     },
     {
       "name": "flintx-fluent-product",
-      "version": "0.7.0-arm64",
+      "version": "0.8.0-arm64",
       "port": "8086",
       "ip": "172.21.0.7",
       "parameters": [
         "--mount source=flintxStorage,target=/config",
         "-e mock.api.url=http://172.21.0.10:8089",
         "-e event-service.url=http://172.21.0.3:8082",
-        "-e flintx.config.folder=/config/",
-        "-e flintx.config.method=docker"
+        "-e flintx.platform.type=docker",
+        "-e flintx.config.folder=/config/"
       ],
-      "secrets": [],
+      "secrets": [
+        "flintx-environment.json"
+      ],
       "configs": [
         "fluentmock-1-product.json"
       ]
     },
     {
       "name": "flintx-fluent-order",
-      "version": "0.7.0-arm64",
+      "version": "0.8.0-arm64",
       "port": "8087",
       "ip": "172.21.0.8",
       "parameters": [
-        "-e graphql-service.url=http://172.21.0.4:8083"
+        "--mount source=flintxStorage,target=/config",
+        "-e graphql-service.url=http://172.21.0.4:8083",
+        "-e flintx.platform.type=docker",
+        "-e flintx.config.folder=/config/"
       ],
-      "secrets": [],
+      "secrets": [
+        "flintx-environment.json"
+      ],
       "configs": []
     },
     {
       "name": "flintx-fluent-batch",
-      "version": "0.7.0-arm64",
+      "version": "0.8.0-arm64",
       "port": "8088",
       "ip": "172.21.0.9",
       "parameters": [
-        "-e graphql-service.url=http://172.21.0.4:8083"
+        "--mount source=flintxStorage,target=/config",
+        "-e graphql-service.url=http://172.21.0.4:8083",
+        "-e flintx.platform.type=docker",
+        "-e flintx.config.folder=/config/"
       ],
       "secrets": [],
       "configs": []

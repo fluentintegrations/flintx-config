@@ -3,8 +3,8 @@ Webhook Integrations
 
 # curl commands
 ```
-export FI_WEBHOOK_HOST=127.0.0.1:8084
 export FI_WEBHOOK_HOST=flintx-fluent-webhook.io
+export FI_WEBHOOK_HOST=127.0.0.1:8084
 
 OK:
 curl --location --request POST http://$FI_WEBHOOK_HOST/webhook \

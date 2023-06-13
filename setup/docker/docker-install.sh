@@ -42,7 +42,6 @@ for flintxService in "${flintxServices[@]}"; do
     echo "Restarting container ${flintxServiceName}."
     stopped=$(docker stop "${flintxServiceName}")
   fi
-    
     # containerId=$(docker run -d --rm --platform linux/x86_64 -p ${flintxServicePort}:${flintxServicePort} --ip=${flintxServiceIP} \
     # --net ${flintxDockerNetworkName} --name=${flintxServiceName} \
     # ${flintxServiceParameters} \
@@ -53,17 +52,16 @@ for flintxService in "${flintxServices[@]}"; do
     ${flintxServiceParameters} \
     fluentintegrations/${flintxServiceName}:${flintxServiceVersion})
   echo "Started container ${flintxServiceName} id:${containerId}"
-
   for secret in $(echo "${flintxServiceSecrets}" | jq -r '.[] | @base64'); do
-    echo "uploading secret ${secret}" | base64 --decode
     serviceSecretFile=$(echo "${secret}" | base64 --decode)
-    docker cp secrets/"${serviceSecretFile}" "${flintxServiceName}":/config
+    echo "Uploading secret ${serviceSecretFile} for service ${flintxServiceName}"
+    docker cp secret/"${serviceSecretFile}" "${flintxServiceName}":/config
   done
 
   for config in $(echo "${flintxServiceConfigs}" | jq -r '.[] | @base64'); do
-    echo "uploading config ${config}" | base64 --decode
     serviceConfigFile=$(echo "${config}" | base64 --decode)
-    docker cp configs/"${serviceConfigFile}" "${flintxServiceName}":/config
+    echo "Uploading config ${serviceConfigFile} for service ${flintxServiceName}"
+    docker cp config/"${serviceConfigFile}" "${flintxServiceName}":/config
   done
 
   echo "Done service: ${flintxServiceName}"

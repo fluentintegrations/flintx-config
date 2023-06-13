@@ -31,7 +31,7 @@ for flintxService in "${flintxServices[@]}"; do
 done
 
 if [[ "${flintxServices[0]}" == "all" ]]; then
-  helm install flintx-configs ./configs -n "${flintxNamespace}";
-  helm install flintx-secrets ./secrets -n "${flintxNamespace}";
+  helm install flintx-configs ./config -n "${flintxNamespace}";
+  helm install flintx-secrets ./secret -n "${flintxNamespace}";
 fi
 
