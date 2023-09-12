@@ -3,7 +3,10 @@
 configFile=$1; shift
 flintxServices=("$@")
 flintxNamespace=$(jq -r '.namespace' ${configFile})
+
+deployAll=false
 if [[ "${flintxServices[0]}" == "all" ]]; then
+  deployAll=true
   flintxServices=($(jq -r '.services[] | .name' ${configFile}))
 fi
 
@@ -30,8 +33,7 @@ for flintxService in "${flintxServices[@]}"; do
   "${flintxServiceName}" "./services/${flintxServiceName}" -n "${flintxNamespace}"
 done
 
-if [[ "${flintxServices[0]}" == "all" ]]; then
-  helm install flintx-configs ./config -n "${flintxNamespace}";
-  helm install flintx-secrets ./secret -n "${flintxNamespace}";
+if $deployAll; then
+  helm install flintx-configs ./configs -n "${flintxNamespace}";
+  helm install flintx-secrets ./secrets -n "${flintxNamespace}";
 fi
-

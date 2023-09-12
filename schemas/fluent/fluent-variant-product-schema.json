@@ -1,0 +1,80 @@
+{
+  "title": "Fluent Variant Product schema",
+  "description": "JSON schema for Variant Product.",
+  "type": "object",
+  "properties": {
+    "ref": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "gtin": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "standardProductRef": {
+      "type": "string"
+    },
+    "categoryRefs": {
+      "type": "array",
+      "items":{
+        "type": "string"
+      }
+    },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "prices": {
+      "type": "array",
+      "items": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "taxType": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "tariff": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

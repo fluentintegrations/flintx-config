@@ -3,7 +3,10 @@
 configFile=$1; shift
 flintxServices=("$@")
 flintxNamespace=$(jq -r '.namespace' ${configFile})
+
+undeployAll=false
 if [[ "${flintxServices[0]}" == "all" ]]; then
+  undeployAll=true
   flintxServices=($(jq -r '.services[] | .name' ${configFile}))
 fi
 
@@ -19,7 +22,7 @@ for flintxService in "${flintxServices[@]}"; do
   helm uninstall "${flintxServiceName}" -n "${flintxNamespace}"
 done
 
-if [[ "${flintxServices[0]}" == "all" ]]; then
+if $undeployAll; then
   helm uninstall flintx-secrets -n "${flintxNamespace}";
   helm uninstall flintx-configs -n "${flintxNamespace}";
 fi

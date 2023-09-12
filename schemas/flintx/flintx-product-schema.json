@@ -1,0 +1,351 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "This is a JSON schema representation of a Product.",
+  "$id": "https://www.flintx.io/schema/product",
+  "title": "JSON schema for flintx.io - Product",
+  "type": "object",
+  "version": "1.0",
+  "definitions": {
+    "Measurement": {
+      "description": "A point value or interval for product characteristics and other purposes.",
+      "type": "object",
+      "properties": {
+        "maxValue": {
+          "description": "The lower value of some characteristic or property.",
+          "type": "number"
+        },
+        "minValue": {
+          "description": "The upper value of some characteristic or property.",
+          "type": "number"
+        },
+        "unitCode": {
+          "description": "The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL.",
+          "type": "string"
+        },
+        "unitText": {
+          "description": "A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for unitCode.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value.",
+          "type": "number"
+        },
+        "locale": {
+          "description": "The locale of the value.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unitCode"
+      ]
+    },
+    "ValueLocale": {
+      "description": "Structure which defines a Value and Locale.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "The value.",
+          "type": "string"
+        },
+        "locale": {
+          "description": "The locale of the value.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ValueType": {
+      "description": "Structure which defines a Value and Type.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "The value.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The locale of the value.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "type"
+      ]
+    },
+    "UriLocale": {
+      "description": "Structure which defines a Uri and Locale.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "The value.",
+          "type": "string",
+          "format": "uri"
+        },
+        "locale": {
+          "description": "The locale of the value.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "DateTimeLocale": {
+      "description": "Structure which defines a Date/Time and Locale.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "The value.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "locale": {
+          "description": "The locale of the value.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ValueTypeName": {
+      "description": "Structure which defines a Value, Type and Name.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "The value.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The locale of the value.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the value.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "type"
+      ]
+    },
+    "Price": {
+      "description": "Structure which defines a price.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "maxPrice": {
+          "type": "number"
+        },
+        "minPrice": {
+          "type": "number"
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "validThrough": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "type",
+        "currency",
+        "price"
+      ]
+    }
+  },
+  "properties": {
+    "identifier": {
+      "description": "The identifier property represents any kind of identifier for any kind of Product, such as ISBNs, GTIN codes, UUIDs etc.",
+      "type": "string"
+    },
+    "status": {
+      "description": "The status of the product.",
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of the product.",
+      "type": "string"
+    },
+    "name": {
+      "description": "The name of the product.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ValueLocale"
+      }
+    },
+    "alternateName": {
+      "description": "An alias for the product.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ValueLocale"
+      }
+    },
+    "summary": {
+      "description": "A summary of the product.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ValueLocale"
+      }
+    },
+    "description": {
+      "description": "A description of the product.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ValueLocale"
+      }
+    },
+    "image": {
+      "description": "An image of the item. This can be a URL or a fully described ImageObject.",
+      "$ref": "#/definitions/UriLocale"
+    },
+    "logo": {
+      "description": "An associated logo.",
+      "$ref": "#/definitions/UriLocale"
+    },
+    "brand": {
+      "description": "The brand(s) associated with a product.",
+      "$ref": "#/definitions/ValueLocale"
+    },
+    "keywords": {
+      "description": "Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas, or by repeating the property.",
+      "type": "string"
+    },
+    "parents": {
+      "description": "Parent(s) product code.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ValueType"
+      }
+    },
+    "associations": {
+      "description": " Array of product identifiers with which the product is in relation.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ValueType"
+      }
+    },
+    "additionalProperties": {
+      "description": "A property-value pair representing an additional characteristics of the entity, e.g. a product feature or another characteristic for which there is no matching property in the schema.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ValueTypeName"
+      }
+    },
+    "categories": {
+      "description": "Category codes. Greater signs or slashes can be used to informally indicate a category hierarchy.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "color": {
+      "description": "The color of the product.",
+      "$ref": "#/definitions/ValueLocale"
+    },
+    "size": {
+      "description": "A standardized size of a product or creative work",
+      "$ref": "#/definitions/ValueLocale"
+    },
+    "material": {
+      "description": "A material that something is made from, e.g. leather, wool, cotton, paper.",
+      "$ref": "#/definitions/ValueLocale"
+    },
+    "pattern": {
+      "description": "A pattern that something has, for example 'polka dot', 'striped', 'Canadian flag'",
+      "$ref": "#/definitions/ValueLocale"
+    },
+    "model": {
+      "description": "The model of the product.",
+      "$ref": "#/definitions/ValueLocale"
+    },
+    "height": {
+      "description": "The height of the item.",
+      "$ref": "#/definitions/Measurement"
+    },
+    "width": {
+      "description": "The width of the item.",
+      "$ref": "#/definitions/Measurement"
+    },
+    "depth": {
+      "description": "The depth of the item.",
+      "$ref": "#/definitions/Measurement"
+    },
+    "weight": {
+      "description": "The weight of the product or person.",
+      "$ref": "#/definitions/Measurement"
+    },
+    "gtins": {
+      "description": "A list of GTINs. A Global Trade Item Number (GTIN). GTINs identify trade items, including products and services, using numeric identification codes.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ValueTypeName"
+      }
+    },
+    "manufacturer": {
+      "description": "The manufacturer of the product.",
+      "$ref": "#/definitions/ValueLocale"
+    },
+    "mpn": {
+      "description": "The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.",
+      "$ref": "#/definitions/ValueLocale"
+    },
+    "productionDate": {
+      "description": "The date of production of the item, e.g. vehicle.",
+      "$ref": "#/definitions/DateTimeLocale"
+    },
+    "releaseDate": {
+      "description": "The release date of a product or product model. This can be used to distinguish the exact variant of a product.",
+      "$ref": "#/definitions/DateTimeLocale"
+    },
+    "countryOfOrigin": {
+      "description": "The country of origin of something, including products as well as creative works such as movie and TV content.",
+      "$ref": "#/definitions/ValueLocale"
+    },
+    "prices": {
+      "description": "The prices of the product.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Price"
+      }
+    },
+    "taxTypes": {
+      "description": "The tax types of the product.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "country": {
+            "type": "string"
+          },
+          "group": {
+            "type": "string"
+          },
+          "tariff": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "country",
+          "group",
+          "tariff"
+        ]
+      }
+    }
+  }
+}

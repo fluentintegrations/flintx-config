@@ -4,6 +4,7 @@ configFile=$1; shift
 flintxServices=("$@")
 flintxDockerNetworkName=$(jq -r '.network' ${configFile})
 flintxDockerVolumeName=$(jq -r '.storage' ${configFile})
+flintxDockerPlatform=$(jq -r '.platform' ${configFile})
 
 if [[ ! $(docker network ls | grep "${flintxDockerNetworkName}") ]]; then
   echo "Creating network ${flintxDockerNetworkName}."
@@ -19,6 +20,7 @@ if [[ ! $(docker volume ls | grep "${flintxDockerVolumeName}") ]]; then
 else
   echo "Volume ${flintxDockerVolumeName} already exists."
 fi
+
 if [[ "${flintxServices[0]}" == "all" ]]; then
   flintxServices=($(jq -r '.services[] | .name' ${configFile}))
 fi
@@ -42,15 +44,15 @@ for flintxService in "${flintxServices[@]}"; do
     echo "Restarting container ${flintxServiceName}."
     stopped=$(docker stop "${flintxServiceName}")
   fi
-    # containerId=$(docker run -d --rm --platform linux/x86_64 -p ${flintxServicePort}:${flintxServicePort} --ip=${flintxServiceIP} \
-    # --net ${flintxDockerNetworkName} --name=${flintxServiceName} \
-    # ${flintxServiceParameters} \
-    # fluentintegrations/${flintxServiceName}:${flintxServiceVersion})
+     containerId=$(docker run -d --rm \
+     -p ${flintxServicePort}:${flintxServicePort} \
+     --ip=${flintxServiceIP} \
+     --net ${flintxDockerNetworkName} \
+     --name=${flintxServiceName} \
+     --platform ${flintxDockerPlatform} \
+     ${flintxServiceParameters} \
+     fluentintegrations/${flintxServiceName}:${flintxServiceVersion})
 
-  containerId=$(docker run -d --rm -p ${flintxServicePort}:${flintxServicePort} --ip=${flintxServiceIP} \
-    --net ${flintxDockerNetworkName} --name=${flintxServiceName} \
-    ${flintxServiceParameters} \
-    fluentintegrations/${flintxServiceName}:${flintxServiceVersion})
   echo "Started container ${flintxServiceName} id:${containerId}"
   for secret in $(echo "${flintxServiceSecrets}" | jq -r '.[] | @base64'); do
     serviceSecretFile=$(echo "${secret}" | base64 --decode)

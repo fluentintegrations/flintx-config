@@ -1,0 +1,41 @@
+{
+  "storage": "flintxStorage",
+  "network": "flintxNetwork",
+  "platform": "linux/arm64",
+  "apiPublicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnmYsZEpyr5b54OkMaKuh5RGXyDWpgICSbDJCr9Wp1eV52pZ4VfPOSOednXaPuYDWYTitPZIv7Ziavhz4cU9pAe2CHqY+7R31csZ0eBxf2N3I7UJKCb29xRn7iHzmVuBv988Sy3z5y5UEeI1m0W6MVZULhMgkSBKe0kL6FJPl5+gNaVpj5BmmrPTKE9oBUUGc234XB9I1hTD/CBDwDduAqPwkIGnY0RJNlq9Pe/KMyW7AhhVKt/LYJrJaXKsoFzwG13EIw8pIjs5jtklAyRAXj1Bb2zdCMmVwTTpBTWflITcH9lYuVnifMFtK9dugGBPf3sfX6Lv2RbQRpfP3Nfzy8wIDAQAB",
+  "services": [
+    {
+      "name": "flintx-akeneo-event",
+      "version": "0.1.0-arm64",
+      "port": "8180",
+      "ip": "172.21.1.1",
+      "parameters": [
+        "--mount source=flintxStorage,target=/config",
+        "-e flintx.platform.type=docker",
+        "-e flintx.secret.folder=/config/",
+        "-e flintx.config.folder=/config/"
+      ],
+      "secrets": [],
+      "configs": [
+        "flintx-akeneo-event.json"
+      ]
+    },
+    {
+      "name": "flintx-akeneo-product",
+      "version": "0.1.0-arm64",
+      "port": "8181",
+      "ip": "172.21.1.2",
+      "parameters": [
+        "--mount source=flintxStorage,target=/config",
+        "-e fluent-product-service.url=http://172.21.0.7:8086",
+        "-e flintx.platform.type=docker",
+        "-e flintx.secret.folder=/config/",
+        "-e flintx.config.folder=/config/"
+      ],
+      "secrets": [],
+      "configs": [
+        "flintx-akeneo-product.json"
+      ]
+    }
+  ]
+}

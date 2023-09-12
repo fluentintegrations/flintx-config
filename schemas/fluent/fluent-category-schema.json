@@ -1,0 +1,25 @@
+{
+  "title": "FlintX Category schema",
+  "description": "JSON schema for Category.",
+  "type": "object",
+  "properties": {
+    "ref": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "parentCategory": {
+      "type": "string"
+    }
+  }
+}

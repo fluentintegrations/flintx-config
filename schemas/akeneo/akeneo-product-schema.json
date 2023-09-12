@@ -1,0 +1,215 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "JSON schema for Akeneo Product.",
+  "description": "JSON schema for Akeneo Product.",
+  "type": "object",
+  "definitions": {
+    "Data": {
+      "type": "object",
+      "properties": {
+        "resource": {
+          "type": "object",
+          "properties": {
+            "uuid": {
+              "description": "Product UUID",
+              "type": "string",
+              "format": "uuid"
+            },
+            "identifier": {
+              "description": "Product identifier, i.e. the value of the only `pim_catalog_identifier` attribute.",
+              "type": "string"
+            },
+            "enabled": {
+              "description": "Whether the product is enabled.",
+              "type": "boolean"
+            },
+            "created": {
+              "type": "string"
+            },
+            "updated": {
+              "type": "string"
+            },
+            "family": {
+              "description": "Family code from which the product inherits its attributes and attributes requirements.",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Code of the parent product model when the product is a variant.",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "groups": {
+              "description": "Codes of the groups to which the product belong.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "categories": {
+              "description": "Codes of the categories in which the product is classified.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "values": {
+              "$ref": "#/definitions/Values"
+            },
+            "associations": {
+              "$ref": "#/definitions/Associations"
+            },
+            "quantified_associations": {
+              "$ref": "#/definitions/QuantifiedAssociations"
+            }
+          }
+        }
+      }
+    },
+    "Values": {
+      "title": "Values",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Value"
+          }
+        },
+        "description": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Value"
+          }
+        },
+        "release_date": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Value"
+          }
+        }
+      }
+    },
+    "Value": {
+      "title": "Value",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locale": {
+          "type": ["null","string"]
+        },
+        "scope": {
+          "type": ["null","string"]
+        },
+        "data": {
+          "type": ["null","string"]
+        }
+      },
+      "required": [
+        "data",
+        "locale",
+        "scope"
+      ]
+    },
+    "Associations": {
+      "title": "Associations",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "PACK": {
+          "$ref": "#/definitions/Association"
+        },
+        "UPSELL": {
+          "$ref": "#/definitions/Association"
+        },
+        "X_SELL": {
+          "$ref": "#/definitions/Association"
+        },
+        "SUBSTITUTION": {
+          "$ref": "#/definitions/Association"
+        }
+      }
+    },
+    "Association": {
+      "title": "Association",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {}
+        },
+        "product_models": {
+          "type": "array",
+          "items": {}
+        },
+        "groups": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "required": [
+        "groups",
+        "product_models",
+        "products"
+      ]
+    },
+    "QuantifiedAssociations": {
+      "title": "QuantifiedAssociations",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {}
+    },
+    "QuantifiedAssociation": {
+      "title": "QuantifiedAssociation",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {}
+        },
+        "product_models": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "required": [
+        "product_models",
+        "products"
+      ]
+    }
+  },
+  "properties": {
+    "action": {
+      "description": "Event type.",
+      "type": "string"
+    },
+    "event_id": {
+      "description": "Unique event identifier.",
+      "type": "string"
+    },
+    "event_datetime": {
+      "description": " Event datetime.",
+      "type": "string"
+    },
+    "author": {
+      "description": "Author of the event.",
+      "type": "string"
+    },
+    "author_type": {
+      "description": "Type of the author \"ui\" or \"api\".",
+      "type": "string"
+    },
+    "pim_source": {
+      "description": "URL of the PIM that sends the event.",
+      "type": "string"
+    },
+    "data": {
+      "$ref": "#/definitions/Data"
+    }
+  }
+}
+

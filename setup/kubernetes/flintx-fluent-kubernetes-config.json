@@ -38,7 +38,9 @@
       "version": "0.8.0-arm64",
       "port": "8084",
       "secrets": [],
-      "configs": []
+      "configs": [
+        "fluentmock-1-webhook"
+      ]
     },
     {
       "name": "flintx-fluent-inventory",
