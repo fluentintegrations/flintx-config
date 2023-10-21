@@ -5,6 +5,7 @@ metadata:
   annotations:
     app.quarkus.io/commit-id: dd0dd1e24a11628150f9e24e780e5ae6c5c7f73f
     app.quarkus.io/build-timestamp: 2023-04-06 - 01:43:55 +0000
+    app.quarkus.io/build-timestamp: 2023-04-06 - 01:43:55 +0000
   labels:
     app.kubernetes.io/name: {{ .Values.app.name }}
     app.kubernetes.io/version: {{ .Values.app.version }}
@@ -26,6 +27,7 @@ spec:
         app.kubernetes.io/version: {{ .Values.app.version }}
       namespace: {{ .Values.app.namespace }}
     spec:
+      serviceAccountName: {{ .Values.app.name }}
       containers:
         - env:
             - name: KUBERNETES_NAMESPACE
@@ -38,6 +40,10 @@ spec:
               name: http
               protocol: TCP
           image: {{ .Values.app.image }}
+          volumeMounts:
+            - name: flintx-persitent-volume
+              mountPath: /config
+              readOnly: false
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: {{ .Values.app.livenessProbe.failureThreshold }}
@@ -59,4 +65,8 @@ spec:
             periodSeconds: {{ .Values.app.readinessProbe.periodSeconds }}
             successThreshold: {{ .Values.app.readinessProbe.successThreshold }}
             timeoutSeconds: {{ .Values.app.readinessProbe.timeoutSeconds }}
-      serviceAccountName: {{ .Values.app.name }}
+      volumes:
+        - name: flintx-persitent-volume
+          persistentVolumeClaim:
+            claimName: flintx-persitent-volume-claim
+

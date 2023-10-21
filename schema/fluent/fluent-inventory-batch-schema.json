@@ -1,0 +1,48 @@
+{
+  "title": "fluent inventory batch schema",
+  "description": "JSON schema for Fluent Commerce inventory batch.",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string"
+    },
+    "entityType": {
+      "type": "string"
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "locationRef": {
+            "type": "string"
+          },
+          "skuRef": {
+            "type": "string"
+          },
+          "qty": {
+            "type": "integer"
+          },
+          "correctedQty": {
+            "type": "integer"
+          },
+          "retailerId": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "locationRef",
+          "skuRef",
+          "qty",
+          "correctedQty",
+          "retailerId"
+        ]
+      }
+    }
+  },
+  "required": [
+    "action",
+    "entityType",
+    "entities"
+  ]
+}

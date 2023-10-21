@@ -1,0 +1,21 @@
+[
+  {
+    "operation": "shift",
+    "spec": {
+      "data": {
+        "virtualPositions": {
+          "virtualPositionEdge": {
+            "*": {
+              "virtualPosition": {
+                "*": "[&2].&",
+                "catalogue": {
+                  "ref": "[&3].catalogueRef"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]

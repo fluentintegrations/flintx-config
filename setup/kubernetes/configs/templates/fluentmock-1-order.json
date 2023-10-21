@@ -1,0 +1,13 @@
+{
+  "kind": "ConfigMap",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "fluentmock-1-order"
+  },
+  "data": {
+    "fluent.product.catalogue.ref": "PC:MASTER:1",
+    "customer.identifier.jsonpath": "$.customer.ref",
+    "fluent.order.mapping":"atlasmap:file:///work/fluent-order-mapping.adm",
+    "fluent.customer.mapping":"atlasmap:file:///work/fluent-customer-mapping.adm"
+  }
+}

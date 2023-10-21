@@ -1,0 +1,58 @@
+{
+  "title": "CreateCustomerInput",
+  "description": "Auto generated JSON schema based on the 'CreateCustomerInput' file",
+  "type": "object",
+  "properties": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "primaryPhone": {
+      "type": "string"
+    },
+    "promotionOptIn": {
+      "type": "boolean"
+    },
+    "retailer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "title": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string"
+    },
+    "primaryEmail": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    }
+  }
+}

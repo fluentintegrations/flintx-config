@@ -6,7 +6,8 @@
       "version": "0.8.0-arm64",
       "port": "8089",
       "secrets": [],
-      "configs": []
+      "configs": [],
+      "mappings": []
     },
     {
       "name": "flintx-fluent-auth",
@@ -15,7 +16,8 @@
       "secrets": [
         "fluentmock-1"
       ],
-      "configs": []
+      "configs": [],
+      "mappings": []
     },
     {
       "name": "flintx-fluent-event",
@@ -24,14 +26,16 @@
       "secrets": [],
       "configs": [
         "fluentmock-1-event"
-      ]
+      ],
+      "mappings": []
     },
     {
       "name": "flintx-fluent-graphql",
       "version": "0.8.0-arm64",
       "port": "8083",
       "secrets": [],
-      "configs": []
+      "configs": [],
+      "mappings": []
     },
     {
       "name": "flintx-fluent-webhook",
@@ -40,7 +44,8 @@
       "secrets": [],
       "configs": [
         "fluentmock-1-webhook"
-      ]
+      ],
+      "mappings": []
     },
     {
       "name": "flintx-fluent-inventory",
@@ -49,6 +54,10 @@
       "secrets": [],
       "configs": [
         "fluentmock-1-inventory"
+      ],
+      "mappings": [
+        "fluent-inventory-json-mapping.adm",
+        "fluent-inventory-csv-mapping.adm"
       ]
     },
     {
@@ -58,6 +67,11 @@
       "secrets": [],
       "configs": [
         "fluentmock-1-product"
+      ],
+      "mappings": [
+        "fluent-category-mapping.adm",
+        "fluent-standard-product-mapping.adm",
+        "fluent-variant-product-mapping.adm"
       ]
     },
     {
@@ -65,14 +79,26 @@
       "version": "0.8.0-arm64",
       "port": "8087",
       "secrets": [],
-      "configs": []
+      "configs": [
+        "fluentmock-1-order"
+      ],
+      "mappings": [
+        "fluent-customer-mapping.adm",
+        "fluent-order-mapping.adm"
+      ]
     },
     {
       "name": "flintx-fluent-batch",
       "version": "0.8.0-arm64",
       "port": "8088",
       "secrets": [],
-      "configs": []
+      "configs": [
+        "fluentmock-1-batch"
+      ],
+      "mappings": [
+        "virtual-positions-to-csv-mapping.adm",
+        "virtual-positions-to-json-mapping.json"
+      ]
     }
   ]
 }

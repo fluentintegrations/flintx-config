@@ -1,0 +1,191 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "This is a JSON schema representation of a Customer Order.",
+  "$id": "https://www.flintx.io/schema/customerOrder",
+  "title": "JSON schema for flintx.io - Customer Order",
+  "type": "object",
+  "version": "1.0",
+  "definitions": {
+    "ValueTypeName": {
+      "description": "Structure which defines a Value, Type and Name.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "The value.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The locale of the value.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the value.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "type"
+      ]
+    },
+    "Price": {
+      "description": "Structure which defines a price.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "maxPrice": {
+          "type": "number"
+        },
+        "minPrice": {
+          "type": "number"
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "validThrough": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "type",
+        "currency",
+        "price"
+      ]
+    }
+  },
+  "properties": {
+    "identifier": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "totalPrice": {
+      "$ref": "#/definitions/Price"
+    },
+    "totalTaxPrice": {
+      "$ref": "#/definitions/Price"
+    },
+    "shippingFee": {
+      "$ref": "#/definitions/Price"
+    },
+    "deliveryType": {
+      "type": "string"
+    },
+    "deliveryAddressName": {
+      "type": "string"
+    },
+    "deliveryAddressCompanyName": {
+      "type": "string"
+    },
+    "deliveryAddressStreet": {
+      "type": "string"
+    },
+    "deliveryAddressCity": {
+      "type": "string"
+    },
+    "deliveryAddressRegion": {
+      "type": "string"
+    },
+    "deliveryAddressState": {
+      "type": "string"
+    },
+    "deliveryAddressPostcode": {
+      "type": "string"
+    },
+    "deliveryAddressCountry": {
+      "type": "string"
+    },
+    "deliveryAddressLongitude": {
+      "type": "number"
+    },
+    "deliveryAddressLatitude": {
+      "type": "number"
+    },
+    "deliveryInstruction": {
+      "type": "string"
+    },
+    "pickupLocationIdentifier": {
+      "type": "string"
+    },
+    "additionalProperties": {
+      "description": "A property-value pair representing an additional characteristics of the entitya.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ValueTypeName"
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "properties": {
+          "lineItemIdentifier": {
+            "type": "string"
+          },
+          "productIdentifier": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "totalPrice": {
+            "$ref": "#/definitions/Price"
+          },
+          "price": {
+            "$ref": "#/definitions/Price"
+          },
+          "taxPrice": {
+            "$ref": "#/definitions/Price"
+          },
+          "taxType": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "description": "A property-value pair representing an additional characteristics of the entitya.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/ValueTypeName"
+            }
+          }
+        }
+      }
+    },
+    "customer": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "primaryPhone": {
+          "type": "string"
+        },
+        "primaryEmail": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    }
+  }
+},

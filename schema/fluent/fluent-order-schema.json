@@ -1,0 +1,173 @@
+{
+  "title": "CreateOrderInput",
+  "description": "Auto generated JSON schema based on the 'CreateOrderInput' file",
+  "type": "object",
+  "definitions": {
+    "ValueTypeName": {
+      "description": "Structure which defines a Value, Type and Name.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "The value.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The locale of the value.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the value.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "type"
+      ]
+    }
+  },
+  "properties": {
+    "ref": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "retailer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "totalPrice": {
+      "type": "number"
+    },
+    "totalTaxPrice": {
+      "type": "number"
+    },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ValueTypeName"
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "properties": {
+          "ref": {
+            "type": "string"
+          },
+          "productRef": {
+            "type": "string"
+          },
+          "productCatalogueRef": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "price": {
+            "type": "number"
+          },
+          "paidPrice": {
+            "type": "number"
+          },
+          "totalPrice": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "taxPrice": {
+            "type": "number"
+          },
+          "taxType": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/ValueTypeName"
+            }
+          }
+        }
+      }
+    },
+    "fulfilmentChoice": {
+      "type": "object",
+      "properties": {
+        "pickupLocationRef": {
+          "type": "string"
+        },
+        "deliveryAddress": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "companyName": {
+              "type": "string"
+            },
+            "street": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "postcode": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "longitude": {
+              "type": "number"
+            },
+            "latitude": {
+              "type": "number"
+            },
+            "timeZone": {
+              "type": "string"
+            }
+          }
+        },
+        "deliveryType": {
+          "type": "string"
+        },
+        "fulfilmentPrice": {
+          "type": "number"
+        },
+        "fulfilmentTaxPrice": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "deliveryInstruction": {
+          "type": "string"
+        }
+      }
+    },
+    "customer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

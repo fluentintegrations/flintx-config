@@ -1,0 +1,4 @@
+---
+app:
+  serviceType: Deployment
+  namespace: flintx

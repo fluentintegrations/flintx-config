@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "This is a JSON schema representation of inventory updates.",
+  "$id": "https://www.flintx.io/schema/product",
+  "title": "JSON schema for flintx.io - Inventory",
+  "version": "1.0",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "locationIdentifier": {
+        "type": "string"
+      },
+      "productIdentifier": {
+        "type": "string"
+      },
+      "quantity": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "locationIdentifier",
+      "productIdentifier",
+      "quantity"
+    ]
+  }
+}

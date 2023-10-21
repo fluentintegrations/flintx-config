@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: flintx-fluent-auth
+data:
+  application.properties: |

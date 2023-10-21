@@ -5,7 +5,7 @@
     "name": "fluentmock-1-webhook"
   },
   "data": {
-    "ORDER.webhook.endpoint": "http://flintx-fluent-order/order/webhook?bridgeEndpoint=true",
+    "ORDER.webhook.endpoint": "http://flintx-fluent-order/fluent/order/webhook?bridgeEndpoint=true",
     "fluent.signature.sha512": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCHKYM7Bafy9oRosQdbW1LFFpGRKioAnoGB+9vBopQYN5hf2lT4Td2DbkFYAACoq/X7tcu+/nPNYL/vpsqCm6g5aXZ751j1oyI+a46J9PPjqzWTR0We1548+QgHiRxvwcFGELqGd55XlShukO5imbx1jq4Rth7JmFO31965fzB5wwIDAQAB"
   }
 }

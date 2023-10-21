@@ -9,6 +9,10 @@
     "fluent.category.upsert.event.name":"UPSERT_CATEGORY",
     "fluent.product.catalogue.ref":"PC:MASTER:1",
     "fluent.product.catalogue.type":"PRODUCT_CATALOGUE",
-    "fluent.product.catalogue.subtype":"MASTER"
+    "fluent.product.catalogue.subtype":"MASTER",
+
+    "fluent.variantProduct.mapping":"atlasmap:file:///work/fluent-variant-product-mapping.adm",
+    "fluent.standardProduct.mapping":"atlasmap:file:///work/fluent-standard-product-mapping.adm",
+    "fluent.category.mapping":"atlasmap:file:///work/fluent-category-mapping.adm"
   }
 }

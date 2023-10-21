@@ -8,6 +8,7 @@ deployAll=false
 if [[ "${flintxServices[0]}" == "all" ]]; then
   deployAll=true
   flintxServices=($(jq -r '.services[] | .name' ${configFile}))
+  helm install flintx-platform ./platform -n "${flintxNamespace}";
 fi
 
 for flintxService in "${flintxServices[@]}"; do
@@ -23,8 +24,8 @@ for flintxService in "${flintxServices[@]}"; do
   flintxServiceConfigs=$(_service '.configs')
   
   # preload images
-  # docker pull fluentintegrations/${flintxServiceName}:${flintxServiceVersion} --platform linux/amd64
-  # docker pull fluentintegrations/${flintxServiceName}:${flintxServiceVersion}-arm64
+#  docker pull fluentintegrations/${flintxServiceName}:${flintxServiceVersion} --platform linux/amd64
+#  docker pull fluentintegrations/${flintxServiceName}:${flintxServiceVersion}-arm64
 
   helm install \
   --set app.name="${flintxServiceName}" \
@@ -37,3 +38,4 @@ if $deployAll; then
   helm install flintx-configs ./configs -n "${flintxNamespace}";
   helm install flintx-secrets ./secrets -n "${flintxNamespace}";
 fi
+
