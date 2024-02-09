@@ -1,10 +1,10 @@
 {
-  "kind": "ConfigMap",
-  "apiVersion": "v1",
-  "metadata": {
-    "name": "fluentmock-1-event"
-  },
-  "data": {
-    "event.verification.endpoint":"https://flintx.free.beeceptor.com/event"
-  }
+    "kind": "ConfigMap",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "fluentmock-1-event"
+    },
+    "data": {
+        "event.verification.endpoint": "https://flintx.free.beeceptor.com/event"
+    }
 }

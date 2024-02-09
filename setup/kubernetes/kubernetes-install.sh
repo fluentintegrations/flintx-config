@@ -8,7 +8,6 @@ deployAll=false
 if [[ "${flintxServices[0]}" == "all" ]]; then
   deployAll=true
   flintxServices=($(jq -r '.services[] | .name' ${configFile}))
-  helm install flintx-platform ./platform -n "${flintxNamespace}";
 fi
 
 for flintxService in "${flintxServices[@]}"; do

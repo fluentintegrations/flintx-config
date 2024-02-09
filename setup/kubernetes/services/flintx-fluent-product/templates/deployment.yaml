@@ -33,16 +33,14 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+            - name: QUARKUS_LOG_LEVEL
+              value: DEBUG
           name: {{ .Values.app.name }}
           ports:
             - containerPort: {{ .Values.app.port }}
               name: http
               protocol: TCP
           image: {{ .Values.app.image }}
-          volumeMounts:
-            - name: flintx-persitent-volume
-              mountPath: /config
-              readOnly: false
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: {{ .Values.app.livenessProbe.failureThreshold }}
@@ -64,8 +62,3 @@ spec:
             periodSeconds: {{ .Values.app.readinessProbe.periodSeconds }}
             successThreshold: {{ .Values.app.readinessProbe.successThreshold }}
             timeoutSeconds: {{ .Values.app.readinessProbe.timeoutSeconds }}
-      volumes:
-        - name: flintx-persitent-volume
-          persistentVolumeClaim:
-            claimName: flintx-persitent-volume-claim
-

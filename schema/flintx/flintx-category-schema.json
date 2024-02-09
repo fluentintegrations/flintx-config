@@ -2,6 +2,43 @@
   "title": "FlintX Category schema",
   "description": "JSON schema for Category.",
   "type": "object",
+  "definitions": {
+    "ValueLocale": {
+      "description": "Structure which defines a Value and Locale.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "The value.",
+          "type": "string"
+        },
+        "locale": {
+          "description": "The locale of the value.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ValueType": {
+      "description": "Structure which defines a Value and Type.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "The value.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The locale of the value.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "type"
+      ]
+    }
+  },
   "properties": {
     "identifier": {
       "type": "string"
@@ -13,13 +50,25 @@
       "type": "string"
     },
     "name": {
-      "type": "string"
+      "description": "The name of the product.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ValueLocale"
+      }
     },
     "summary": {
-      "type": "string"
+      "description": "A summary of the product.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ValueLocale"
+      }
     },
-    "parentCategory": {
-      "type": "string"
+    "parents": {
+      "description": "Parent(s) category codes.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ValueType"
+      }
     }
   }
 }

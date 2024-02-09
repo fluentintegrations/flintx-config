@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "deltas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "deltaId": {
+              "type": "string"
+            },
+            "productRef": {
+              "type": "string"
+            },
+            "locationRef": {
+              "type": "string"
+            },
+            "qty": {
+              "type": "integer"
+            },
+            "type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "deltaId",
+            "productRef",
+            "locationRef",
+            "qty",
+            "type"
+          ]
+        }
+    }
+  },
+  "required": [
+    "deltas"
+  ]
+}

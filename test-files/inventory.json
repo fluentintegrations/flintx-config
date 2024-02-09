@@ -1,0 +1,12 @@
+[
+  {
+    "locationIdentifier": "LOC_SYD",
+    "productIdentifier": "FLINTX",
+    "quantity": 100
+  },
+  {
+    "locationIdentifier": "LOC_FLINTX",
+    "productIdentifier": "FLINTX",
+    "quantity": 200
+  }
+]

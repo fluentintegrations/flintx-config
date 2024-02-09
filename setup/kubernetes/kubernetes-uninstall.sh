@@ -25,5 +25,4 @@ done
 if $undeployAll; then
   helm uninstall flintx-secrets -n "${flintxNamespace}";
   helm uninstall flintx-configs -n "${flintxNamespace}";
-  helm uninstall flintx-platform -n "${flintxNamespace}";
 fi

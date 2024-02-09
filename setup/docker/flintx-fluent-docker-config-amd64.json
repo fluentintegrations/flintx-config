@@ -116,8 +116,8 @@
         "fluentmock-1-inventory.json"
       ],
       "mappings": [
-        "fluent-inventory-json-mapping.adm",
-        "fluent-inventory-csv-mapping.adm"
+        "fluent-inventory-batch-json-mapping.adm",
+        "fluent-inventory-batch-csv-mapping.adm"
       ]
     },
     {

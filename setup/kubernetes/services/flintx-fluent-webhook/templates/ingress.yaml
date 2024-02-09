@@ -11,6 +11,11 @@ metadata:
   name: {{ .Values.app.name }}
   namespace: {{ .Values.app.namespace }}
 spec:
+  defaultBackend:
+    service:
+      name: {{ .Values.app.name }}
+      port:
+        name: http
   rules:
     - host: {{ .Values.app.host }}
       http:
@@ -21,4 +26,4 @@ spec:
                 port:
                   name: http
             path: /
-            pathType: Prefix
+            pathType: ImplementationSpecific

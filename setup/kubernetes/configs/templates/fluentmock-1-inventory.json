@@ -1,15 +1,16 @@
 {
-  "kind": "ConfigMap",
-  "apiVersion": "v1",
-  "metadata": {
-    "name": "fluentmock-1-inventory"
-  },
-  "data": {
-    "fluent.inventory.delta.event.name":"INVENTORY_DELTA",
-    "fluent.inventory.catalogue.ref":"DEFAULT:1",
-    "fluent.inventory.catalogue.type":"INVENTORY_CATALOGUE",
-    "fluent.inventory.catalogue.subtype":"DEFAULT",
-    "fluent.inventory.csv.mapping":"atlasmap:file:///work/fluent-inventory-csv-mapping.adm",
-    "fluent.inventory.json.mapping":"atlasmap:file:///work/fluent-inventory-json-mapping.adm"
-  }
+    "kind": "ConfigMap",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "fluentmock-1-inventory"
+    },
+    "data": {
+        "fluent.inventory.delta.event.name": "INVENTORY_DELTA",
+        "fluent.inventory.catalogue.ref": "DEFAULT:1",
+        "fluent.inventory.catalogue.type": "INVENTORY_CATALOGUE",
+        "fluent.inventory.catalogue.subtype": "DEFAULT",
+        "fluent.inventory.batch.csv.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-inventory-batch-csv-mapping.adm",
+        "fluent.inventory.batch.json.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-inventory-batch-json-mapping.adm",
+        "fluent.inventory.event.json.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-inventory-event-json-mapping.adm"
+    }
 }

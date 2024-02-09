@@ -1,0 +1,2 @@
+{"identifier":"FLINTX-CAT1","status":"ACTIVE","type":"DEFAULT","name":[{"value":"FlintX Category 1","locale":"en_US"}],"summary":[{"value":"FlintX Category 1","locale":"en_US"}],"parents":[{"value": "FLINTX","type": "DEFAULT"}]}
+{"identifier":"FLINTX-CAT2","status":"ACTIVE","type":"DEFAULT","name":[{"value":"FlintX Category 2","locale":"en_US"}],"summary":[{"value":"FlintX Category 2","locale":"en_US"}],"parents":[{"value": "FLINTX","type": "DEFAULT"}]}

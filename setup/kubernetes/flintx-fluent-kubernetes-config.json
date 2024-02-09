@@ -14,7 +14,8 @@
       "version": "0.8.0-arm64",
       "port": "8081",
       "secrets": [
-        "fluentmock-1"
+        "fluentmock-1",
+        "holger-1"
       ],
       "configs": [],
       "mappings": []
@@ -25,7 +26,8 @@
       "port": "8082",
       "secrets": [],
       "configs": [
-        "fluentmock-1-event"
+        "fluentmock-1-event",
+        "holger-1-event"
       ],
       "mappings": []
     },
@@ -43,7 +45,8 @@
       "port": "8084",
       "secrets": [],
       "configs": [
-        "fluentmock-1-webhook"
+        "fluentmock-1-webhook",
+        "holger-1-webhook"
       ],
       "mappings": []
     },
@@ -53,12 +56,10 @@
       "port": "8085",
       "secrets": [],
       "configs": [
-        "fluentmock-1-inventory"
+        "fluentmock-1-inventory",
+        "holger-1-inventory"
       ],
-      "mappings": [
-        "fluent-inventory-json-mapping.adm",
-        "fluent-inventory-csv-mapping.adm"
-      ]
+      "mappings": []
     },
     {
       "name": "flintx-fluent-product",
@@ -66,13 +67,10 @@
       "port": "8086",
       "secrets": [],
       "configs": [
-        "fluentmock-1-product"
+        "fluentmock-1-product",
+        "holger-1-product"
       ],
-      "mappings": [
-        "fluent-category-mapping.adm",
-        "fluent-standard-product-mapping.adm",
-        "fluent-variant-product-mapping.adm"
-      ]
+      "mappings": []
     },
     {
       "name": "flintx-fluent-order",
@@ -80,12 +78,10 @@
       "port": "8087",
       "secrets": [],
       "configs": [
-        "fluentmock-1-order"
+        "fluentmock-1-order",
+        "holger-1-order"
       ],
-      "mappings": [
-        "fluent-customer-mapping.adm",
-        "fluent-order-mapping.adm"
-      ]
+      "mappings": []
     },
     {
       "name": "flintx-fluent-batch",
@@ -93,12 +89,10 @@
       "port": "8088",
       "secrets": [],
       "configs": [
-        "fluentmock-1-batch"
+        "fluentmock-1-batch",
+        "holger-1-batch"
       ],
-      "mappings": [
-        "virtual-positions-to-csv-mapping.adm",
-        "virtual-positions-to-json-mapping.json"
-      ]
+      "mappings": []
     }
   ]
 }

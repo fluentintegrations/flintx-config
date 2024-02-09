@@ -1,18 +1,17 @@
 {
-  "kind": "ConfigMap",
-  "apiVersion": "v1",
-  "metadata": {
-    "name": "fluentmock-1-product"
-  },
-  "data": {
-    "fluent.product.upsert.event.name":"UPSERT_PRODUCT",
-    "fluent.category.upsert.event.name":"UPSERT_CATEGORY",
-    "fluent.product.catalogue.ref":"PC:MASTER:1",
-    "fluent.product.catalogue.type":"PRODUCT_CATALOGUE",
-    "fluent.product.catalogue.subtype":"MASTER",
-
-    "fluent.variantProduct.mapping":"atlasmap:file:///work/fluent-variant-product-mapping.adm",
-    "fluent.standardProduct.mapping":"atlasmap:file:///work/fluent-standard-product-mapping.adm",
-    "fluent.category.mapping":"atlasmap:file:///work/fluent-category-mapping.adm"
-  }
+    "kind": "ConfigMap",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "fluentmock-1-product"
+    },
+    "data": {
+        "fluent.product.upsert.event.name": "UPSERT_PRODUCT",
+        "fluent.category.upsert.event.name": "UPSERT_CATEGORY",
+        "fluent.product.catalogue.ref": "PC:MASTER:1",
+        "fluent.product.catalogue.type": "PRODUCT_CATALOGUE",
+        "fluent.product.catalogue.subtype": "MASTER",
+        "fluent.variantProduct.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-variant-product-mapping.adm",
+        "fluent.standardProduct.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-standard-product-mapping.adm",
+        "fluent.category.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-category-mapping.adm"
+    }
 }

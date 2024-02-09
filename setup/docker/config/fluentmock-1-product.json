@@ -4,8 +4,7 @@
   "fluent.product.catalogue.ref": "PC:MASTER:1",
   "fluent.product.catalogue.type": "PRODUCT_CATALOGUE",
   "fluent.product.catalogue.subtype": "MASTER",
-
-  "fluent.variantProduct.mapping":"atlasmap:file:///config/fluent-variant-product-mapping.adm",
-  "fluent.standardProduct.mapping":"atlasmap:file:///config/fluent-standard-product-mapping.adm",
-  "fluent.category.mapping":"atlasmap:file:///config/fluent-category-mapping.adm"
+  "fluent.variantProduct.mapping": "atlasmap:file:///config/fluent-variant-product-mapping.adm",
+  "fluent.standardProduct.mapping": "atlasmap:file:///config/fluent-standard-product-mapping.adm",
+  "fluent.category.mapping": "atlasmap:file:///config/fluent-category-mapping.adm"
 }

@@ -1,6 +1,6 @@
 {
   "fluent.product.catalogue.ref": "PC:MASTER:1",
   "customer.identifier.jsonpath": "$.customer.ref",
-  "fluent.order.mapping":"atlasmap:file:///config/fluent-order-mapping.adm",
-  "fluent.customer.mapping":"atlasmap:file:///config/fluent-customer-mapping.adm"
+  "fluent.order.mapping": "atlasmap:file:///config/fluent-order-mapping.adm",
+  "fluent.customer.mapping": "atlasmap:file:///config/fluent-customer-mapping.adm"
 }
