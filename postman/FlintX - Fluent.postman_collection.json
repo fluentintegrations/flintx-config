@@ -1,0 +1,1364 @@
+{
+	"info": {
+		"_postman_id": "d9916aa8-24ae-4c32-8c48-821a2866a914",
+		"name": "FlintX - Fluent",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1242925"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Fluent - Authentication - Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"url": {
+							"raw": "{{flintx-fluent-auth-url}}/fluent/auth",
+							"host": [
+								"{{flintx-fluent-auth-url}}"
+							],
+							"path": [
+								"fluent",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Batch",
+			"item": [
+				{
+					"name": "Fluent - Batch - Virtual Positions CSV",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"query extractVirtualPositions( $ref: [String!] $type: [String!] $productRef: [String!] $groupRef: [String!] $catalogueRef: String! $after: String $first: Int $updatedFrom: DateTime $updatedTo: DateTime) { virtualPositions( ref: $ref type:$type productRef:$productRef groupRef:$groupRef catalogue:{ref:$catalogueRef} updatedOn: {from: $updatedFrom, to: $updatedTo} after: $after first: $first ){ virtualPositionEdge: edges { virtualPosition: node { ref type status quantity productRef groupRef catalogue { ref } updatedOn createdOn } cursor } pageInfo { hasNextPage } }}\",\n    \"edgeTypeName\": \"virtualPositionEdge\",\n    \"mappingFile\":\"atlasmap:https://storage.googleapis.com/flintx_public/mapping/virtual-positions-to-csv-mapping.adm\",\n    \"outputFile\": \"file://.?fileName=out.csv&fileExist=Append\",\n    \"outputFormat\": \"csv\",\n    \"splitCount\": 100,\n    \"variables\": {\n        \"ref\": \"%LOC_SYD%\",\n        \"updatedFrom\": \"2023-01-01T00:00:00.000\",\n        \"catalogueRef\": \"BASE:1\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-batch-url}}/fluent/batch",
+							"host": [
+								"{{flintx-fluent-batch-url}}"
+							],
+							"path": [
+								"fluent",
+								"batch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Batch - Virtual Positions JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"query extractVirtualPositions( $ref: [String!] $type: [String!] $productRef: [String!] $groupRef: [String!] $catalogueRef: String! $after: String $first: Int $updatedFrom: DateTime $updatedTo: DateTime) { virtualPositions( ref: $ref type:$type productRef:$productRef groupRef:$groupRef catalogue:{ref:$catalogueRef} updatedOn: {from: $updatedFrom, to: $updatedTo} after: $after first: $first ){ virtualPositionEdge: edges { virtualPosition: node { ref type status quantity productRef groupRef catalogue { ref } updatedOn createdOn } cursor } pageInfo { hasNextPage } }}\",\n    \"edgeTypeName\": \"virtualPositionEdge\",\n    \"mappingFile\": \"jolt:https://storage.googleapis.com/flintx_public/mapping/virtual-positions-to-json-mapping.json?inputType=JsonString&outputType=JsonString\",\n    \"outputFile\": \"file://.?fileName=out.json&fileExist=Append\",\n    \"outputFormat\": \"json\",\n    \"splitCount\": 100,\n    \"variables\": {\n        \"ref\": \"%LOC_SYD%\",\n        \"updatedFrom\": \"2023-01-01T00:00:00.000\",\n        \"catalogueRef\": \"BASE:1\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-batch-url}}/fluent/batch",
+							"host": [
+								"{{flintx-fluent-batch-url}}"
+							],
+							"path": [
+								"fluent",
+								"batch"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "Fluent - Event - Post and verify",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"SendOrderStatusAck\",\n  \"entityId\": \"3786\",\n  \"entityType\": \"ORDER\"\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-event-url}}/fluent/event/postAndVerify",
+							"host": [
+								"{{flintx-fluent-event-url}}"
+							],
+							"path": [
+								"fluent",
+								"event",
+								"postAndVerify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Event - Search by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"cf486a2e-9892-11ed-9852-efd748c6a0db\"\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-event-url}}/fluent/event/search",
+							"host": [
+								"{{flintx-fluent-event-url}}"
+							],
+							"path": [
+								"fluent",
+								"event",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Event - Search by ids",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\"id\": \"cf486a2e-9892-11ed-9852-efd748c6a0db\"},\n    {\"id\": \"be0b1d41-9892-11ed-a1a0-c95bd0f5f7d9\"}\n]"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-event-url}}/fluent/events/search",
+							"host": [
+								"{{flintx-fluent-event-url}}"
+							],
+							"path": [
+								"fluent",
+								"events",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Event - Search by params",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"from\":\"2023-01-20T07:19:10.369Z\",\n        \"rootEntityId\":\"4159\",\n        \"rootEntityType\":\"ORDER\",\n        \"count\":10\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-event-url}}/fluent/event/search",
+							"host": [
+								"{{flintx-fluent-event-url}}"
+							],
+							"path": [
+								"fluent",
+								"event",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Event - Search mixed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"from\":\"2023-01-20T07:19:10.369Z\",\n        \"rootEntityId\":\"4159\",\n        \"rootEntityType\":\"ORDER\",\n        \"count\":100\n    },\n    {\"id\": \"cf486a2e-9892-11ed-9852-efd748c6a0db\"}\n]"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-event-url}}/fluent/events/search",
+							"host": [
+								"{{flintx-fluent-event-url}}"
+							],
+							"path": [
+								"fluent",
+								"events",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Event - Status by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"cf486a2e-9892-11ed-9852-efd748c6a0db\"\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-event-url}}/fluent/event/status",
+							"host": [
+								"{{flintx-fluent-event-url}}"
+							],
+							"path": [
+								"fluent",
+								"event",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Event - Status by params",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"from\":\"2023-01-20T07:19:10.369Z\",\n    \"rootEntityId\":\"4159\",\n    \"rootEntityType\":\"ORDER\",\n    \"count\": 10\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-event-url}}/fluent/event/status",
+							"host": [
+								"{{flintx-fluent-event-url}}"
+							],
+							"path": [
+								"fluent",
+								"event",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GraphQL",
+			"item": [
+				{
+					"name": "Fluent - GraphQL - Create customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"mutation createCustomer($input: CreateCustomerInput!) { createCustomer(input:$input){ id } }\",\n    \"variables\": {\n        \"input\": {\n            \"title\": \"Mr\",\n            \"firstName\": \"Flint\",\n            \"lastName\": \"X\",\n            \"primaryEmail\": \"hello@flintx.com\",\n            \"primaryPhone\": \"+61123456789\",\n            \"username\": \"flintx:1\",\n            \"timezone\": \"Australia/Melbourne\",\n            \"promotionOptIn\": false,\n            \"retailer\": {\n                \"id\": 1\n            }\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-graphql-url}}/fluent/graphql/mutation",
+							"host": [
+								"{{flintx-fluent-graphql-url}}"
+							],
+							"path": [
+								"fluent",
+								"graphql",
+								"mutation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - GraphQL - Query order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"query orderByRef($orderRef: String!) {order(ref: $orderRef) { id ref status } }\",\n    \"variables\": {\n        \"orderRef\": \"HD_387_56\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-graphql-url}}/fluent/graphql/query",
+							"host": [
+								"{{flintx-fluent-graphql-url}}"
+							],
+							"path": [
+								"fluent",
+								"graphql",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - GraphQL - Query customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"query customerByRef($customerRef: String!) { customer(ref: $customerRef) { id ref title firstName lastName username primaryEmail } }\",\n    \"variables\": {\n        \"customerRef\": \"flintx:1\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-graphql-url}}/fluent/graphql/query",
+							"host": [
+								"{{flintx-fluent-graphql-url}}"
+							],
+							"path": [
+								"fluent",
+								"graphql",
+								"query"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventory",
+			"item": [
+				{
+					"name": "Fluent - Inventory - Load CSV file",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							},
+							{
+								"key": "splitCount",
+								"value": "50"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/holgerlierse/dev/fluentintegrations/flintx-other/request-samples/test-files/inventory.csv"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{flintx-fluent-inventory-url}}/fluent/inventory/load",
+							"host": [
+								"{{flintx-fluent-inventory-url}}"
+							],
+							"path": [
+								"fluent",
+								"inventory",
+								"load"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Inventory - Load JSON file",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							},
+							{
+								"key": "splitCount",
+								"value": "50"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/holgerlierse/dev/fluentintegrations/flintx-other/request-samples/test-files/inventory.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{flintx-fluent-inventory-url}}/fluent/inventory/load",
+							"host": [
+								"{{flintx-fluent-inventory-url}}"
+							],
+							"path": [
+								"fluent",
+								"inventory",
+								"load"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Inventory - Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"inventoryDeltas\": [\n        {\n            \"identifier\": \"123\",\n            \"productIdentifier\": \"FLINTX\",\n            \"locationIdentifier\": \"LOC_FLINTX\",\n            \"quantity\": 200,\n            \"type\": \"DELTA\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-inventory-url}}/fluent/inventory/event",
+							"host": [
+								"{{flintx-fluent-inventory-url}}"
+							],
+							"path": [
+								"fluent",
+								"inventory",
+								"event"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mock",
+			"item": [
+				{
+					"name": "Fluent - Mock",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{flintx-fluent-mock-url}}/oauth/token?username=fluentmock&password=fluentmock&client_id=FLUENTMOCK&client_secret=fluentmock&grant_type=password&scope=api",
+							"host": [
+								"{{flintx-fluent-mock-url}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "fluentmock"
+								},
+								{
+									"key": "password",
+									"value": "fluentmock"
+								},
+								{
+									"key": "client_id",
+									"value": "FLUENTMOCK"
+								},
+								{
+									"key": "client_secret",
+									"value": "fluentmock"
+								},
+								{
+									"key": "grant_type",
+									"value": "password"
+								},
+								{
+									"key": "scope",
+									"value": "api"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Fluent - Order - Create HD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const orderType = \"HD\";",
+									"pm.environment.set(\"orderType\", orderType);",
+									"var orderIdentifier = pm.variables.replaceIn('{{$guid}}');",
+									"pm.environment.set(\"orderIdentifier\", orderType + \"_\" + orderIdentifier);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identifier\": \"{{orderIdentifier}}\",\n    \"type\": \"{{orderType}}\",\n    \"items\": [\n        {\n            \"lineItemIdentifier\": \"1\",\n            \"productIdentifier\": \"FLINTX\",\n            \"quantity\": 5\n        }\n    ],\n    \"deliveryType\": \"STANDARD\",\n    \"deliveryAddressName\": \"Flint X\",\n    \"deliveryAddressCompanyName\": \"\",\n    \"deliveryAddressStreet\": \"99 FlintX Street\",\n    \"deliveryAddressCity\": \"Melbourne\",\n    \"deliveryAddressState\": \"VIC\",\n    \"deliveryAddressPostcode\": \"3000\",\n    \"deliveryAddressCountry\": \"Australia\",\n    \"deliveryAddressLongitude\": 151.2093648,\n    \"deliveryAddressLatitude\": -33.8848268,\n    \"shippingFee\": 1.0,\n    \"totalPrice\": 10.0,\n    \"totalTaxPrice\": 1.0,\n    \"customer\": {\n        \"ref\": \"flintx:2\",\n        \"title\": \"Mr\",\n        \"firstName\": \"Flint\",\n        \"lastName\": \"X\",\n        \"username\": \"flintx:2\",\n        \"primaryEmail\": \"hello@flintx.com\",\n        \"primaryPhone\": \"+61123456789\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-order-url}}/fluent/order/create",
+							"host": [
+								"{{flintx-fluent-order-url}}"
+							],
+							"path": [
+								"fluent",
+								"order",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Order - Create CC",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const orderType = \"CC\";",
+									"pm.environment.set(\"orderType\", orderType);",
+									"var orderIdentifier = pm.variables.replaceIn('{{$guid}}');",
+									"pm.environment.set(\"orderIdentifier\", orderType + \"_\" + orderIdentifier);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identifier\": \"{{orderIdentifier}}\",\n    \"type\": \"{{orderType}}\",\n    \"items\": [\n        {\n            \"lineItemIdentifier\": \"1\",\n            \"productIdentifier\": \"FLINTX\",\n            \"quantity\": 5\n        }\n    ],\n    \"deliveryType\":\"STANDARD\",\n    \"pickupLocationIdentifier\":\"LOC_SYD\",\n    \"totalPrice\": 10.0,\n    \"totalTaxPrice\": 1.0,\n    \"customer\": {\n        \"ref\": \"flintx:2\",\n        \"title\": \"Mr\",\n        \"firstName\": \"Flint\",\n        \"lastName\": \"X\",\n        \"username\": \"flintx:2\",\n        \"primaryEmail\": \"hello@flintx.com\",\n        \"primaryPhone\": \"+61123456789\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-order-url}}/fluent/order/create",
+							"host": [
+								"{{flintx-fluent-order-url}}"
+							],
+							"path": [
+								"fluent",
+								"order",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Order - Webhook",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"5f7fa2bd-39b2-4105-98f4-29b6ca3afc98\",\n    \"name\": \"OrderStatus\",\n    \"accountId\": \"FLINTX\",\n    \"retailerId\": \"1\",\n    \"entityId\": \"1`\",\n    \"entityRef\": \"FLINTX_1\",\n    \"entityType\": \"ORDER\",\n    \"entityStatus\": \"COMPLETE\",\n    \"type\": \"NORMAL\",\n    \"attributes\": {},\n    \"meta\": {\n        \"mode\": \"SYNC\",\n        \"simulation\": false,\n        \"models\": []\n    },\n    \"trailLogs\": [],\n    \"errorLogs\": [],\n    \"rootEntityId\": \"1\",\n    \"rootEntityType\": \"ORDER\",\n    \"rootEntityRef\": \"FLINTX_1\"\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-order-url}}/fluent/order/webhook",
+							"host": [
+								"{{flintx-fluent-order-url}}"
+							],
+							"path": [
+								"fluent",
+								"order",
+								"webhook"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Fluent - Product - Load Standard Product JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identifier\": \"FLINTX_SPRD\",\n    \"type\": \"STANDARD\",\n    \"status\": \"ACTIVE\",\n    \"name\": [\n        {\n            \"value\": \"FlintX Standard Product\",\n            \"locale\":\"en_US\"\n        }\n    ],\n    \"summary\":[\n        {\n            \"value\":\"The Swiss Army Knife for Fluent Integrations.\",\n            \"locale\":\"en_US\"\n        }\n    ],\n    \"gtins\": [\n        {\n            \"name\": \"GTIN\",\n            \"value\": \"1234\"\n        }\n    ],\n    \"parents\": [],\n    \"categories\": [\n        \"FLINTX\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-product-url}}/fluent/product/load",
+							"host": [
+								"{{flintx-fluent-product-url}}"
+							],
+							"path": [
+								"fluent",
+								"product",
+								"load"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Product - Load Variant Product JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identifier\": \"FLINTX\",\n    \"type\": \"VARIANT\",\n    \"status\": \"ACTIVE\",\n    \"name\": [\n        {\n            \"value\": \"FlintX Variant Product\",\n            \"locale\":\"en_US\"\n        }\n    ],\n    \"summary\":[\n        {\n            \"value\":\"The Swiss Army Knife for integrating your Composable Architecture\",\n            \"locale\":\"en_US\"\n        }\n    ],\n    \"gtins\": [\n        {\n            \"name\": \"GTIN\",\n            \"value\": \"1234\"\n        }\n    ],\n    \"parents\": [\n        {\n            \"value\": \"FLINTX_SPRD\",\n            \"type\":\"STANDARD\"\n        }\n    ],\n    \"additionalProperties\": [\n        {\n            \"name\": \"imageUrl\",\n            \"type\": \"STRING\",\n            \"value\": \"https://www.flintx.io\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-product-url}}/fluent/product/load",
+							"host": [
+								"{{flintx-fluent-product-url}}"
+							],
+							"path": [
+								"fluent",
+								"product",
+								"load"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Product - Load Products CSV file",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							},
+							{
+								"key": "splitCount",
+								"value": "1"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/holgerlierse/dev/fluentintegrations/flintx-config/test-files/products.csv"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{flintx-fluent-product-url}}/fluent/products/load",
+							"host": [
+								"{{flintx-fluent-product-url}}"
+							],
+							"path": [
+								"fluent",
+								"products",
+								"load"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Product - Load Category JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identifier\": \"FLINTX\",\n    \"status\": \"ACTIVE\",\n    \"type\": \"DEFAULT\",\n    \"name\": [\n        {\n            \"value\": \"FlintX Category\",\n            \"locale\": \"en_US\"\n        }\n    ],\n    \"summary\": [\n        {\n            \"value\": \"FlintX Category\",\n            \"locale\": \"en_US\"\n        }\n    ],\n    \"parents\": []\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-product-url}}/fluent/category/load",
+							"host": [
+								"{{flintx-fluent-product-url}}"
+							],
+							"path": [
+								"fluent",
+								"category",
+								"load"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Product - Load Categories CSV file",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							},
+							{
+								"key": "splitCount",
+								"value": "1"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/holgerlierse/dev/fluentintegrations/flintx-other/request-samples/test-files/categories.csv"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{flintx-fluent-product-url}}/fluent/categories/load",
+							"host": [
+								"{{flintx-fluent-product-url}}"
+							],
+							"path": [
+								"fluent",
+								"categories",
+								"load"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Webhook",
+			"item": [
+				{
+					"name": "Fluent - Webhook - OK",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "flex.signature",
+								"value": "J1WcIF5nq5teN9Ag3gZZ3yNDUr/igyF+FjLUWI8RI7XGrOkgObj1W0nyzuFVvxJO+cCEqDU1ayMKT+snGH8+HkBFG2LNZPYmFhxePSbQ0enz9Pa8Gij0EnF+KmzUJwGSkqIgLjUGrnHuKZhmPbM8D5kaeUuJKwDma+pmE8/oy6o="
+							},
+							{
+								"key": "fluent-signature",
+								"value": "gi2n8hUILq36XEOSwQuaMhNUEg2xAmmlgpmQhIUXqem4ykUYmndjyyVQJJdvsZe10w6gGHgPDS5wb9ihpCGug+pC1CXUjoo81/mHnBwnb+afYI1g4nyCMgMG7F2OC4uhIqM/AXbGQKMF1MPsJ/AygowKGFKZRx57iFmM5DzvdWI="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\":\"5f7fa2bd-39b2-4105-98f4-29b6ca3afc98\",\"name\":\"OrderStatus\",\"accountId\":\"HOLGER\",\"retailerId\":\"1\",\"entityId\":\"3786\",\"entityRef\":\"HD_387_56\",\"entityType\":\"ORDER\",\"entityStatus\":\"COMPLETE\",\"type\":\"NORMAL\",\"attributes\":{},\"meta\":{\"mode\":\"SYNC\",\"simulation\":false,\"models\":[]},\"trailLogs\":[],\"errorLogs\":[],\"rootEntityId\":\"3786\",\"rootEntityType\":\"ORDER\",\"rootEntityRef\":\"HD_387_56\"}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-webhook-url}}/fluent/webhook",
+							"host": [
+								"{{flintx-fluent-webhook-url}}"
+							],
+							"path": [
+								"fluent",
+								"webhook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Webhook - KO",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "flex.signature",
+								"value": "J1WcIF5nq5teN9Ag3gZZ3yNDUr/igyF+FjLUWI8RI7XGrOkgObj1W0nyzuFVvxJO+cCEqDU1ayMKT+snGH8+HkBFG2LNZPYmFhxePSbQ0enz9Pa8Gij0EnF+KmzUJwGSkqIgLjUGrnHuKZhmPbM8D5kaeUuJKwDma+pmE8/oy6o="
+							},
+							{
+								"key": "fluent-signature",
+								"value": "gi2n8hUILq36XEOSwQuaMhNUEg2xAmmlgpmQhIUXqem4ykUYmndjyyVQJJdvsZe10w6gGHgPDS5wb9ihpCGug+pC1CXUjoo81/mHnBwnb+afYI1g4nyCMgMG7F2OC4uhIqM/AXbGQKMF1MPsJ/AygowKGFKZRx57iFmM5DzvdWI="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\":\"\",\"name\":\"OrderStatus\",\"accountId\":\"HOLGER\",\"retailerId\":\"1\",\"entityId\":\"3786\",\"entityRef\":\"HD_387_56\",\"entityType\":\"ORDER\",\"entityStatus\":\"COMPLETE\",\"type\":\"NORMAL\",\"attributes\":{},\"meta\":{\"mode\":\"SYNC\",\"simulation\":false,\"models\":[]},\"trailLogs\":[],\"errorLogs\":[],\"rootEntityId\":\"3786\",\"rootEntityType\":\"ORDER\",\"rootEntityRef\":\"HD_387_56\"}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-webhook-url}}/fluent/webhook",
+							"host": [
+								"{{flintx-fluent-webhook-url}}"
+							],
+							"path": [
+								"fluent",
+								"webhook"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fluent - Template",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const orderType = \"HD\";",
+							"pm.environment.set(\"orderType\", orderType);",
+							"var orderIdentifier = pm.variables.replaceIn('{{$guid}}');",
+							"pm.environment.set(\"orderIdentifier\", orderType + \"_\" + orderIdentifier);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "apiKey",
+						"value": "{{api-key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identifier\": \"{{orderIdentifier}}\",\n    \"type\": \"{{orderType}}\",\n    \"items\": [\n        {\n            \"lineItemIdentifier\": \"1\",\n            \"productIdentifier\": \"FLINTX\",\n            \"quantity\": 5\n        }\n    ],\n    \"deliveryType\": \"STANDARD\",\n    \"deliveryAddressName\": \"Flint X\",\n    \"deliveryAddressCompanyName\": \"\",\n    \"deliveryAddressStreet\": \"99 FlintX Street\",\n    \"deliveryAddressCity\": \"Melbourne\",\n    \"deliveryAddressState\": \"VIC\",\n    \"deliveryAddressPostcode\": \"3000\",\n    \"deliveryAddressCountry\": \"Australia\",\n    \"deliveryAddressLongitude\": 151.2093648,\n    \"deliveryAddressLatitude\": -33.8848268,\n    \"shippingFee\": 1.0,\n    \"totalPrice\": 10.0,\n    \"totalTaxPrice\": 1.0,\n    \"customer\": {\n        \"ref\": \"flintx:2\",\n        \"title\": \"Mr\",\n        \"firstName\": \"Flint\",\n        \"lastName\": \"X\",\n        \"username\": \"flintx:2\",\n        \"primaryEmail\": \"hello@flintx.com\",\n        \"primaryPhone\": \"+61123456789\"\n    }\n}"
+				},
+				"url": {
+					"raw": "{{flintx-fluent-template-url}}/fluent/template",
+					"host": [
+						"{{flintx-fluent-template-url}}"
+					],
+					"path": [
+						"fluent",
+						"template"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
