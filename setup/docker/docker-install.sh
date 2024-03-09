@@ -38,7 +38,7 @@ for flintxService in "${flintxServices[@]}"; do
   flintxServiceParameters=$(_service '.parameters[]')
   flintxServiceSecrets=$(_service '.secrets')
   flintxServiceConfigs=$(_service '.configs')
-  flintxServiceMappings=$(_service '.mappings')
+
   if [[ ! $(docker ps --filter "name=${flintxServiceName}" | grep "${flintxServiceName}") ]]; then
     echo "Starting container ${flintxServiceName}."
   else
@@ -66,12 +66,6 @@ for flintxService in "${flintxServices[@]}"; do
     serviceConfigFile=$(echo "${config}" | base64 --decode)
     echo "Uploading config ${serviceConfigFile} for service ${flintxServiceName}"
     docker cp config/"${serviceConfigFile}" "${flintxServiceName}":/config
-  done
-
-  for mapping in $(echo "${flintxServiceMappings}" | jq -r '.[] | @base64'); do
-    mappingFile=$(echo "${mapping}" | base64 --decode)
-    echo "Uploading mapping ${mappingFile} for service ${flintxServiceName}"
-    docker cp ../../mapping/"${mappingFile}" "${flintxServiceName}":/config
   done
 
   echo "Done service: ${flintxServiceName}"
