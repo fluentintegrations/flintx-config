@@ -1,6 +1,6 @@
 {
   "fluent.product.catalogue.ref": "PC:MASTER:1",
-  "customer.identifier.jsonpath": "$.customer.ref",
-  "fluent.order.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-order-mapping.adm",
-  "fluent.customer.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-customer-mapping.adm"
+  "customer.identifier.jsonpath": "$.customer.identifier",
+  "fluent.order.mapping": "bean:com.fluentintegrations.mapping.bean.FlintxToFluentOrderMappingBean",
+  "fluent.customer.mapping": "bean:com.fluentintegrations.mapping.bean.FlintxToFluentCustomerMappingBean"
 }

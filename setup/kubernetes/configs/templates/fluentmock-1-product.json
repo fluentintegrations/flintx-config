@@ -10,8 +10,7 @@
         "fluent.product.catalogue.ref": "PC:MASTER:1",
         "fluent.product.catalogue.type": "PRODUCT_CATALOGUE",
         "fluent.product.catalogue.subtype": "MASTER",
-        "fluent.variantProduct.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-variant-product-mapping.adm",
-        "fluent.standardProduct.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-standard-product-mapping.adm",
-        "fluent.category.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-category-mapping.adm"
+        "fluent.product.mapping": "bean:com.fluentintegrations.mapping.bean.FlintxToFluentProductMappingBean",
+        "fluent.category.mapping": "bean:com.fluentintegrations.mapping.bean.FlintxToFluentCategoryMappingBean"
     }
 }

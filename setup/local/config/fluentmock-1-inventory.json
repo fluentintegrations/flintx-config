@@ -3,7 +3,7 @@
   "fluent.inventory.catalogue.ref": "DEFAULT:1",
   "fluent.inventory.catalogue.type": "INVENTORY_CATALOGUE",
   "fluent.inventory.catalogue.subtype": "DEFAULT",
-  "fluent.inventory.batch.csv.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-inventory-batch-csv-mapping.adm",
-  "fluent.inventory.batch.json.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-inventory-batch-json-mapping.adm",
-  "fluent.inventory.event.json.mapping": "atlasmap:https://storage.googleapis.com/flintx_public/mapping/fluent-inventory-event-json-mapping.adm"
+  "fluent.inventory.batch.csv.mapping": "bean:com.fluentintegrations.mapping.bean.FlintxToFluentInventoryCsvMappingBean",
+  "fluent.inventory.batch.json.mapping": "bean:com.fluentintegrations.mapping.bean.FlintxToFluentInventoryJsonMappingBean",
+  "fluent.inventory.event.json.mapping": "bean:com.fluentintegrations.mapping.bean.FlintxToFluentInventoryDeltaMappingBean"
 }
