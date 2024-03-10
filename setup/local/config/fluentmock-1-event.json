@@ -1,3 +1,4 @@
 {
-  "event.verification.endpoint": "https://flintx.free.beeceptor.com/event"
+  "PRODUCT_CATALOGUE.event.verification.endpoint": "http://127.0.0.1:8086/fluent/productCatalogue/verification?bridgeEndpoint=true",
+  "BATCH.event.verification.endpoint": "http://127.0.0.1:8085/fluent/inventoryCatalogue/verification?bridgeEndpoint=true"
 }
