@@ -6,7 +6,7 @@
   "services": [
     {
       "name": "flintx-fluent-mock",
-      "version": "2.0.0-arm64",
+      "version": "1.0.0-arm64",
       "port": "8089",
       "ip": "172.21.0.10",
       "parameters": [
@@ -19,7 +19,7 @@
     },
     {
       "name": "flintx-fluent-auth",
-      "version": "2.0.0-arm64",
+      "version": "1.0.0-arm64",
       "port": "8081",
       "ip": "172.21.0.2",
       "parameters": [
@@ -32,14 +32,15 @@
         "-e quarkus.log.level=DEBUG"
       ],
       "secrets": [
-        "fluentmock-1.json"
+        "fluentmock-1.json",
+        "holger-1.json"
       ],
       "configs": [],
       "mappings": []
     },
     {
       "name": "flintx-fluent-event",
-      "version": "2.0.0-arm64",
+      "version": "1.0.0-arm64",
       "port": "8082",
       "ip": "172.21.0.3",
       "parameters": [
@@ -53,13 +54,14 @@
       ],
       "secrets": [],
       "configs": [
-        "fluentmock-1-event.json"
+        "fluentmock-1-event.json",
+        "holger-1-event.json"
       ],
       "mappings": []
     },
     {
       "name": "flintx-fluent-graphql",
-      "version": "2.0.0-arm64",
+      "version": "1.0.0-arm64",
       "port": "8083",
       "ip": "172.21.0.4",
       "parameters": [
@@ -76,7 +78,7 @@
     },
     {
       "name": "flintx-fluent-webhook",
-      "version": "2.0.0-arm64",
+      "version": "1.0.0-arm64",
       "port": "8084",
       "ip": "172.21.0.5",
       "parameters": [
@@ -89,13 +91,14 @@
       ],
       "secrets": [],
       "configs": [
-        "fluentmock-1-webhook.json"
+        "fluentmock-1-webhook.json",
+        "holger-1-webhook.json"
       ],
       "mappings": []
     },
     {
       "name": "flintx-fluent-inventory",
-      "version": "2.0.0-arm64",
+      "version": "1.0.0-arm64",
       "port": "8085",
       "ip": "172.21.0.6",
       "parameters": [
@@ -113,16 +116,14 @@
         "flintx-environment.json"
       ],
       "configs": [
-        "fluentmock-1-inventory.json"
+        "fluentmock-1-inventory.json",
+        "holger-1-inventory.json"
       ],
-      "mappings": [
-        "fluent-inventory-batch-json-mapping.adm",
-        "fluent-inventory-batch-csv-mapping.adm"
-      ]
+      "mappings": []
     },
     {
       "name": "flintx-fluent-product",
-      "version": "2.0.0-arm64",
+      "version": "1.0.0-arm64",
       "port": "8086",
       "ip": "172.21.0.7",
       "parameters": [
@@ -139,17 +140,14 @@
         "flintx-environment.json"
       ],
       "configs": [
-        "fluentmock-1-product.json"
+        "fluentmock-1-product.json",
+        "holger-1-product.json"
       ],
-      "mappings": [
-        "fluent-category-mapping.adm",
-        "fluent-standard-product-mapping.adm",
-        "fluent-variant-product-mapping.adm"
-      ]
+      "mappings": []
     },
     {
       "name": "flintx-fluent-order",
-      "version": "2.0.0-arm64",
+      "version": "1.0.0-arm64",
       "port": "8087",
       "ip": "172.21.0.8",
       "parameters": [
@@ -165,16 +163,14 @@
         "flintx-environment.json"
       ],
       "configs": [
-        "fluentmock-1-order.json"
+        "fluentmock-1-order.json",
+        "holger-1-order.json"
       ],
-      "mappings": [
-        "fluent-customer-mapping.adm",
-        "fluent-order-mapping.adm"
-      ]
+      "mappings": []
     },
     {
       "name": "flintx-fluent-batch",
-      "version": "2.0.0-arm64",
+      "version": "1.0.0-arm64",
       "port": "8088",
       "ip": "172.21.0.9",
       "parameters": [
@@ -188,10 +184,7 @@
       ],
       "secrets": [],
       "configs": [],
-      "mappings": [
-        "virtual-positions-to-csv-mapping.adm",
-        "virtual-positions-to-json-mapping.json"
-      ]
+      "mappings": []
     }
   ]
 }
