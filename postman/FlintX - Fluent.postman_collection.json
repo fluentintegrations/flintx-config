@@ -48,12 +48,92 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Fluent - Authentication - OpenAPI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{flintx-fluent-auth-url}}/fluent/api-doc",
+							"host": [
+								"{{flintx-fluent-auth-url}}"
+							],
+							"path": [
+								"fluent",
+								"api-doc"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "Batch",
 			"item": [
+				{
+					"name": "Fluent - Batch - OpenAPI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"query extractVirtualPositions( $ref: [String!] $type: [String!] $productRef: [String!] $groupRef: [String!] $catalogueRef: String! $after: String $first: Int $updatedFrom: DateTime $updatedTo: DateTime) { virtualPositions( ref: $ref type:$type productRef:$productRef groupRef:$groupRef catalogue:{ref:$catalogueRef} updatedOn: {from: $updatedFrom, to: $updatedTo} after: $after first: $first ){ virtualPositionEdge: edges { virtualPosition: node { ref type status quantity productRef groupRef catalogue { ref } updatedOn createdOn } cursor } pageInfo { hasNextPage } }}\",\n    \"edgeTypeName\": \"virtualPositionEdge\",\n    \"mapping\":\"bean:com.fluentintegrations.mapping.bean.FluentToCSVFileVirtualPositionMappingBean\",\n    \"outputFile\": \"file://.?fileName=out.csv&fileExist=Append\",\n    \"outputFormat\": \"csv\",\n    \"splitCount\": 100,\n    \"variables\": {\n        \"ref\": \"%LOC_SYD%\",\n        \"updatedFrom\": \"2023-01-01T00:00:00.000\",\n        \"catalogueRef\": \"BASE:1\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-batch-url}}/fluent/batch",
+							"host": [
+								"{{flintx-fluent-batch-url}}"
+							],
+							"path": [
+								"fluent",
+								"batch"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Fluent - Batch - Virtual Positions CSV",
 					"event": [
@@ -83,7 +163,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"query\": \"query extractVirtualPositions( $ref: [String!] $type: [String!] $productRef: [String!] $groupRef: [String!] $catalogueRef: String! $after: String $first: Int $updatedFrom: DateTime $updatedTo: DateTime) { virtualPositions( ref: $ref type:$type productRef:$productRef groupRef:$groupRef catalogue:{ref:$catalogueRef} updatedOn: {from: $updatedFrom, to: $updatedTo} after: $after first: $first ){ virtualPositionEdge: edges { virtualPosition: node { ref type status quantity productRef groupRef catalogue { ref } updatedOn createdOn } cursor } pageInfo { hasNextPage } }}\",\n    \"edgeTypeName\": \"virtualPositionEdge\",\n    \"mappingFile\":\"atlasmap:https://storage.googleapis.com/flintx_public/mapping/virtual-positions-to-csv-mapping.adm\",\n    \"outputFile\": \"file://.?fileName=out.csv&fileExist=Append\",\n    \"outputFormat\": \"csv\",\n    \"splitCount\": 100,\n    \"variables\": {\n        \"ref\": \"%LOC_SYD%\",\n        \"updatedFrom\": \"2023-01-01T00:00:00.000\",\n        \"catalogueRef\": \"BASE:1\"\n    }\n}"
+							"raw": "{\n    \"query\": \"query extractVirtualPositions( $ref: [String!] $type: [String!] $productRef: [String!] $groupRef: [String!] $catalogueRef: String! $after: String $first: Int $updatedFrom: DateTime $updatedTo: DateTime) { virtualPositions( ref: $ref type:$type productRef:$productRef groupRef:$groupRef catalogue:{ref:$catalogueRef} updatedOn: {from: $updatedFrom, to: $updatedTo} after: $after first: $first ){ virtualPositionEdge: edges { virtualPosition: node { ref type status quantity productRef groupRef catalogue { ref } updatedOn createdOn } cursor } pageInfo { hasNextPage } }}\",\n    \"edgeTypeName\": \"virtualPositionEdge\",\n    \"mapping\":\"bean:com.fluentintegrations.mapping.bean.FluentToCSVFileVirtualPositionMappingBean\",\n    \"outputFile\": \"file://.?fileName=out.csv&fileExist=Append\",\n    \"outputFormat\": \"csv\",\n    \"splitCount\": 100,\n    \"variables\": {\n        \"ref\": \"%LOC_SYD%\",\n        \"updatedFrom\": \"2023-01-01T00:00:00.000\",\n        \"catalogueRef\": \"BASE:1\"\n    }\n}"
 						},
 						"url": {
 							"raw": "{{flintx-fluent-batch-url}}/fluent/batch",
@@ -127,7 +207,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"query\": \"query extractVirtualPositions( $ref: [String!] $type: [String!] $productRef: [String!] $groupRef: [String!] $catalogueRef: String! $after: String $first: Int $updatedFrom: DateTime $updatedTo: DateTime) { virtualPositions( ref: $ref type:$type productRef:$productRef groupRef:$groupRef catalogue:{ref:$catalogueRef} updatedOn: {from: $updatedFrom, to: $updatedTo} after: $after first: $first ){ virtualPositionEdge: edges { virtualPosition: node { ref type status quantity productRef groupRef catalogue { ref } updatedOn createdOn } cursor } pageInfo { hasNextPage } }}\",\n    \"edgeTypeName\": \"virtualPositionEdge\",\n    \"mappingFile\": \"jolt:https://storage.googleapis.com/flintx_public/mapping/virtual-positions-to-json-mapping.json?inputType=JsonString&outputType=JsonString\",\n    \"outputFile\": \"file://.?fileName=out.json&fileExist=Append\",\n    \"outputFormat\": \"json\",\n    \"splitCount\": 100,\n    \"variables\": {\n        \"ref\": \"%LOC_SYD%\",\n        \"updatedFrom\": \"2023-01-01T00:00:00.000\",\n        \"catalogueRef\": \"BASE:1\"\n    }\n}"
+							"raw": "{\n    \"query\": \"query extractVirtualPositions( $ref: [String!] $type: [String!] $productRef: [String!] $groupRef: [String!] $catalogueRef: String! $after: String $first: Int $updatedFrom: DateTime $updatedTo: DateTime) { virtualPositions( ref: $ref type:$type productRef:$productRef groupRef:$groupRef catalogue:{ref:$catalogueRef} updatedOn: {from: $updatedFrom, to: $updatedTo} after: $after first: $first ){ virtualPositionEdge: edges { virtualPosition: node { ref type status quantity productRef groupRef catalogue { ref } updatedOn createdOn } cursor } pageInfo { hasNextPage } }}\",\n    \"edgeTypeName\": \"virtualPositionEdge\",\n    \"mapping\": \"bean:com.fluentintegrations.mapping.bean.FluentToJSONFileVirtualPositionMappingBean\",\n    \"outputFile\": \"file://.?fileName=out.json&fileExist=Append\",\n    \"outputFormat\": \"json\",\n    \"splitCount\": 100,\n    \"variables\": {\n        \"ref\": \"%LOC_SYD%\",\n        \"updatedFrom\": \"2023-01-01T00:00:00.000\",\n        \"catalogueRef\": \"BASE:1\"\n    }\n}"
 						},
 						"url": {
 							"raw": "{{flintx-fluent-batch-url}}/fluent/batch",
@@ -147,6 +227,87 @@
 		{
 			"name": "Event",
 			"item": [
+				{
+					"name": "Fluent - Event - OpenAPI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{flintx-fluent-event-url}}/fluent/api-doc",
+							"host": [
+								"{{flintx-fluent-event-url}}"
+							],
+							"path": [
+								"fluent",
+								"api-doc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Event - Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"SendOrderStatusAck\",\n  \"entityId\": \"3786\",\n  \"entityType\": \"ORDER\"\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-event-url}}/fluent/event/postAndVerify",
+							"host": [
+								"{{flintx-fluent-event-url}}"
+							],
+							"path": [
+								"fluent",
+								"event",
+								"postAndVerify"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Fluent - Event - Post and verify",
 					"event": [
@@ -461,12 +622,143 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Fluent - Event - Verify Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"from\":\"2023-01-20T07:19:10.369Z\",\n    \"rootEntityId\":\"4159\",\n    \"rootEntityType\":\"ORDER\",\n    \"count\": 10\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-event-url}}/fluent/event/status",
+							"host": [
+								"{{flintx-fluent-event-url}}"
+							],
+							"path": [
+								"fluent",
+								"event",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Event - Verify Events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "identifier",
+								"value": "{{identifier}}"
+							},
+							{
+								"key": "verificationMethod",
+								"value": "status",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"events\": [\n        {\n            \"id\": \"cf486a2e-9892-11ed-9852-efd748c6a0db\"\n        },\n        {\n            \"id\": \"be0b1d41-9892-11ed-a1a0-c95bd0f5f7d9\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-event-url}}/fluent/events/verify",
+							"host": [
+								"{{flintx-fluent-event-url}}"
+							],
+							"path": [
+								"fluent",
+								"events",
+								"verify"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "GraphQL",
 			"item": [
+				{
+					"name": "Fluent - GraphQL - OpenAPI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{flintx-fluent-graphql-url}}/fluent/api-doc",
+							"host": [
+								"{{flintx-fluent-graphql-url}}"
+							],
+							"path": [
+								"fluent",
+								"api-doc"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Fluent - GraphQL - Create customer",
 					"event": [
@@ -607,6 +899,37 @@
 		{
 			"name": "Inventory",
 			"item": [
+				{
+					"name": "Fluent - Inventory - OpenAPI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flintx-fluent-inventory-url}}/fluent/api-docs",
+							"host": [
+								"{{flintx-fluent-inventory-url}}"
+							],
+							"path": [
+								"fluent",
+								"api-docs"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Fluent - Inventory - Load CSV file",
 					"event": [
@@ -760,6 +1083,68 @@
 			"name": "Mock",
 			"item": [
 				{
+					"name": "Fluent - Mock OpenAPI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{flintx-fluent-mock-url}}/oauth/token?username=fluentmock&password=fluentmock&client_id=FLUENTMOCK&client_secret=fluentmock&grant_type=password&scope=api",
+							"host": [
+								"{{flintx-fluent-mock-url}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "fluentmock"
+								},
+								{
+									"key": "password",
+									"value": "fluentmock"
+								},
+								{
+									"key": "client_id",
+									"value": "FLUENTMOCK"
+								},
+								{
+									"key": "client_secret",
+									"value": "fluentmock"
+								},
+								{
+									"key": "grant_type",
+									"value": "password"
+								},
+								{
+									"key": "scope",
+									"value": "api"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Fluent - Mock",
 					"event": [
 						{
@@ -827,6 +1212,90 @@
 			"name": "Order",
 			"item": [
 				{
+					"name": "Fluent - Orders - OpenAPI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{flintx-fluent-order-url}}/fluent/api-docs",
+							"host": [
+								"{{flintx-fluent-order-url}}"
+							],
+							"path": [
+								"fluent",
+								"api-docs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fluent - Order - Orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-order-url}}/fluent/orders",
+							"host": [
+								"{{flintx-fluent-order-url}}"
+							],
+							"path": [
+								"fluent",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Fluent - Order - Create HD",
 					"event": [
 						{
@@ -867,7 +1336,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"identifier\": \"{{orderIdentifier}}\",\n    \"type\": \"{{orderType}}\",\n    \"items\": [\n        {\n            \"lineItemIdentifier\": \"1\",\n            \"productIdentifier\": \"FLINTX\",\n            \"quantity\": 5\n        }\n    ],\n    \"deliveryType\": \"STANDARD\",\n    \"deliveryAddressName\": \"Flint X\",\n    \"deliveryAddressCompanyName\": \"\",\n    \"deliveryAddressStreet\": \"99 FlintX Street\",\n    \"deliveryAddressCity\": \"Melbourne\",\n    \"deliveryAddressState\": \"VIC\",\n    \"deliveryAddressPostcode\": \"3000\",\n    \"deliveryAddressCountry\": \"Australia\",\n    \"deliveryAddressLongitude\": 151.2093648,\n    \"deliveryAddressLatitude\": -33.8848268,\n    \"shippingFee\": 1.0,\n    \"totalPrice\": 10.0,\n    \"totalTaxPrice\": 1.0,\n    \"customer\": {\n        \"ref\": \"flintx:2\",\n        \"title\": \"Mr\",\n        \"firstName\": \"Flint\",\n        \"lastName\": \"X\",\n        \"username\": \"flintx:2\",\n        \"primaryEmail\": \"hello@flintx.com\",\n        \"primaryPhone\": \"+61123456789\"\n    }\n}"
+							"raw": "{\n    \"identifier\": \"{{orderIdentifier}}\",\n    \"type\": \"{{orderType}}\",\n    \"items\": [\n        {\n            \"lineItemIdentifier\": \"1\",\n            \"productIdentifier\": \"FLINTX\",\n            \"quantity\": 5\n        }\n    ],\n    \"deliveryType\": \"STANDARD\",\n    \"deliveryAddressName\": \"Flint X\",\n    \"deliveryAddressCompanyName\": \"\",\n    \"deliveryAddressStreet\": \"99 FlintX Street\",\n    \"deliveryAddressCity\": \"Melbourne\",\n    \"deliveryAddressState\": \"VIC\",\n    \"deliveryAddressPostcode\": \"3000\",\n    \"deliveryAddressCountry\": \"Australia\",\n    \"deliveryAddressLongitude\": 151.2093648,\n    \"deliveryAddressLatitude\": -33.8848268,\n    \"additionalProperties\":[\n        {\n            \"name\":\"testName\",\n            \"type\":\"STRING\",\n            \"value\":\"testValue\"\n        }\n    ],\n    \"shippingFee\": {\n        \"price\": 2.0,\n        \"currency\": \"AUD\"\n    },\n    \"totalPrice\": {\n        \"price\": 10.0,\n        \"currency\": \"AUD\"\n    },\n    \"totalTaxPrice\": {\n        \"price\": 1.0,\n        \"currency\": \"AUD\"\n    },\n    \"customer\": {   \n        \"identifier\": \"flintx:3\",\n        \"title\": \"Mr\",\n        \"firstName\": \"Flint\",\n        \"lastName\": \"X\",\n        \"primaryEmail\": \"hello@flintx.com\",\n        \"primaryPhone\": \"+61123456789\"\n    }\n}"
 						},
 						"url": {
 							"raw": "{{flintx-fluent-order-url}}/fluent/order/create",
@@ -924,7 +1393,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"identifier\": \"{{orderIdentifier}}\",\n    \"type\": \"{{orderType}}\",\n    \"items\": [\n        {\n            \"lineItemIdentifier\": \"1\",\n            \"productIdentifier\": \"FLINTX\",\n            \"quantity\": 5\n        }\n    ],\n    \"deliveryType\":\"STANDARD\",\n    \"pickupLocationIdentifier\":\"LOC_SYD\",\n    \"totalPrice\": 10.0,\n    \"totalTaxPrice\": 1.0,\n    \"customer\": {\n        \"ref\": \"flintx:2\",\n        \"title\": \"Mr\",\n        \"firstName\": \"Flint\",\n        \"lastName\": \"X\",\n        \"username\": \"flintx:2\",\n        \"primaryEmail\": \"hello@flintx.com\",\n        \"primaryPhone\": \"+61123456789\"\n    }\n}"
+							"raw": "{\n    \"identifier\": \"{{orderIdentifier}}\",\n    \"type\": \"{{orderType}}\",\n    \"items\": [\n        {\n            \"lineItemIdentifier\": \"1\",\n            \"productIdentifier\": \"FLINTX\",\n            \"quantity\": 5\n        }\n    ],\n    \"deliveryType\":\"STANDARD\",\n    \"pickupLocationIdentifier\":\"LOC_SYD\",\n    \"additionalProperties\":[\n        {\n            \"name\":\"testName\",\n            \"type\":\"STRING\",\n            \"value\":\"testValue\"\n        }\n    ],\n    \"shippingFee\": {\n        \"price\": 2.0,\n        \"currency\": \"AUD\"\n    },\n    \"totalPrice\": {\n        \"price\": 10.0,\n        \"currency\": \"AUD\"\n    },\n    \"totalTaxPrice\": {\n        \"price\": 1.0,\n        \"currency\": \"AUD\"\n    },\n    \"customer\": {\n        \"identifier\": \"flintx:4\",\n        \"title\": \"Mr\",\n        \"firstName\": \"Flint\",\n        \"lastName\": \"X\",\n        \"primaryEmail\": \"hello@flintx.com\",\n        \"primaryPhone\": \"+61123456789\"\n    }\n}"
 						},
 						"url": {
 							"raw": "{{flintx-fluent-order-url}}/fluent/order/create",
@@ -990,6 +1459,53 @@
 		{
 			"name": "Product",
 			"item": [
+				{
+					"name": "Fluent - Product - OpenAPI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apiKey",
+								"value": "{{api-key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identifier\": \"FLINTX_SPRD\",\n    \"type\": \"STANDARD\",\n    \"status\": \"ACTIVE\",\n    \"name\": [\n        {\n            \"value\": \"FlintX Standard Product\",\n            \"locale\":\"en_US\"\n        }\n    ],\n    \"summary\":[\n        {\n            \"value\":\"The Swiss Army Knife for Fluent Integrations.\",\n            \"locale\":\"en_US\"\n        }\n    ],\n    \"gtins\": [\n        {\n            \"name\": \"GTIN\",\n            \"value\": \"1234\"\n        }\n    ],\n    \"parents\": [],\n    \"categories\": [\n        \"FLINTX\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{flintx-fluent-product-url}}/fluent/api-docs",
+							"host": [
+								"{{flintx-fluent-product-url}}"
+							],
+							"path": [
+								"fluent",
+								"api-docs"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Fluent - Product - Load Standard Product JSON",
 					"event": [
@@ -1064,7 +1580,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"identifier\": \"FLINTX\",\n    \"type\": \"VARIANT\",\n    \"status\": \"ACTIVE\",\n    \"name\": [\n        {\n            \"value\": \"FlintX Variant Product\",\n            \"locale\":\"en_US\"\n        }\n    ],\n    \"summary\":[\n        {\n            \"value\":\"The Swiss Army Knife for integrating your Composable Architecture\",\n            \"locale\":\"en_US\"\n        }\n    ],\n    \"gtins\": [\n        {\n            \"name\": \"GTIN\",\n            \"value\": \"1234\"\n        }\n    ],\n    \"parents\": [\n        {\n            \"value\": \"FLINTX_SPRD\",\n            \"type\":\"STANDARD\"\n        }\n    ],\n    \"additionalProperties\": [\n        {\n            \"name\": \"imageUrl\",\n            \"type\": \"STRING\",\n            \"value\": \"https://www.flintx.io\"\n        }\n    ]\n}"
+							"raw": "{\n    \"identifier\": \"FLINTX\",\n    \"type\": \"VARIANT\",\n    \"status\": \"ACTIVE\",\n    \"name\": [\n        {\n            \"value\": \"FlintX Variant Product\",\n            \"locale\":\"en_US\"\n        }\n    ],\n    \"summary\":[\n        {\n            \"value\":\"The Swiss Army Knife for integrating your Composable Architecture\",\n            \"locale\":\"en_US\"\n        }\n    ],\n    \"gtins\": [\n        {\n            \"name\": \"GTIN\",\n            \"value\": \"1234\"\n        }\n    ],\n    \"parents\": [\n        {\n            \"value\": \"FLINTX_SPRD\",\n            \"type\":\"STANDARD\"\n        }\n    ],\n    \"additionalProperties\": [\n        {\n            \"name\": \"imageUrl\",\n            \"type\": \"STRING\",\n            \"value\": \"https://www.flintx.io\"\n        }\n    ],\n    \"categories\": [\n        \"FLINTX\"\n    ],\n    \"prices\": [\n        {\n            \"type\": \"STRING\",\n            \"price\": 10.00,\n            \"currency\":\"AUD\"\n        }\n    ],\n    \"taxTypes\": [\n        {\n            \"group\": \"GROUP\",\n            \"country\": \"Australia\",\n            \"tariff\":\"GST\"\n        },\n        {\n            \"group\": \"GROUP\",\n            \"country\": \"Germany\",\n            \"tariff\":\"VAT\"\n        }\n\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{flintx-fluent-product-url}}/fluent/product/load",
@@ -1233,6 +1749,37 @@
 			"name": "Webhook",
 			"item": [
 				{
+					"name": "Fluent - Webhook - OpenAPI",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "flex.signature",
+								"value": "J1WcIF5nq5teN9Ag3gZZ3yNDUr/igyF+FjLUWI8RI7XGrOkgObj1W0nyzuFVvxJO+cCEqDU1ayMKT+snGH8+HkBFG2LNZPYmFhxePSbQ0enz9Pa8Gij0EnF+KmzUJwGSkqIgLjUGrnHuKZhmPbM8D5kaeUuJKwDma+pmE8/oy6o="
+							},
+							{
+								"key": "fluent-signature",
+								"value": "gi2n8hUILq36XEOSwQuaMhNUEg2xAmmlgpmQhIUXqem4ykUYmndjyyVQJJdvsZe10w6gGHgPDS5wb9ihpCGug+pC1CXUjoo81/mHnBwnb+afYI1g4nyCMgMG7F2OC4uhIqM/AXbGQKMF1MPsJ/AygowKGFKZRx57iFmM5DzvdWI="
+							}
+						],
+						"url": {
+							"raw": "{{flintx-fluent-webhook-url}}/fluent/api-docs",
+							"host": [
+								"{{flintx-fluent-webhook-url}}"
+							],
+							"path": [
+								"fluent",
+								"api-docs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Fluent - Webhook - OK",
 					"request": {
 						"method": "POST",
@@ -1303,62 +1850,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Fluent - Template",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"const orderType = \"HD\";",
-							"pm.environment.set(\"orderType\", orderType);",
-							"var orderIdentifier = pm.variables.replaceIn('{{$guid}}');",
-							"pm.environment.set(\"orderIdentifier\", orderType + \"_\" + orderIdentifier);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "apiKey",
-						"value": "{{api-key}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"identifier\": \"{{orderIdentifier}}\",\n    \"type\": \"{{orderType}}\",\n    \"items\": [\n        {\n            \"lineItemIdentifier\": \"1\",\n            \"productIdentifier\": \"FLINTX\",\n            \"quantity\": 5\n        }\n    ],\n    \"deliveryType\": \"STANDARD\",\n    \"deliveryAddressName\": \"Flint X\",\n    \"deliveryAddressCompanyName\": \"\",\n    \"deliveryAddressStreet\": \"99 FlintX Street\",\n    \"deliveryAddressCity\": \"Melbourne\",\n    \"deliveryAddressState\": \"VIC\",\n    \"deliveryAddressPostcode\": \"3000\",\n    \"deliveryAddressCountry\": \"Australia\",\n    \"deliveryAddressLongitude\": 151.2093648,\n    \"deliveryAddressLatitude\": -33.8848268,\n    \"shippingFee\": 1.0,\n    \"totalPrice\": 10.0,\n    \"totalTaxPrice\": 1.0,\n    \"customer\": {\n        \"ref\": \"flintx:2\",\n        \"title\": \"Mr\",\n        \"firstName\": \"Flint\",\n        \"lastName\": \"X\",\n        \"username\": \"flintx:2\",\n        \"primaryEmail\": \"hello@flintx.com\",\n        \"primaryPhone\": \"+61123456789\"\n    }\n}"
-				},
-				"url": {
-					"raw": "{{flintx-fluent-template-url}}/fluent/template",
-					"host": [
-						"{{flintx-fluent-template-url}}"
-					],
-					"path": [
-						"fluent",
-						"template"
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }
