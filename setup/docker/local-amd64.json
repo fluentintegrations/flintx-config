@@ -1,0 +1,90 @@
+{
+  "storage": "flintxStorage",
+  "network": "flintxNetwork",
+  "platform": "linux/amd64",
+  "apiPublicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnmYsZEpyr5b54OkMaKuh5RGXyDWpgICSbDJCr9Wp1eV52pZ4VfPOSOednXaPuYDWYTitPZIv7Ziavhz4cU9pAe2CHqY+7R31csZ0eBxf2N3I7UJKCb29xRn7iHzmVuBv988Sy3z5y5UEeI1m0W6MVZULhMgkSBKe0kL6FJPl5+gNaVpj5BmmrPTKE9oBUUGc234XB9I1hTD/CBDwDduAqPwkIGnY0RJNlq9Pe/KMyW7AhhVKt/LYJrJaXKsoFzwG13EIw8pIjs5jtklAyRAXj1Bb2zdCMmVwTTpBTWflITcH9lYuVnifMFtK9dugGBPf3sfX6Lv2RbQRpfP3Nfzy8wIDAQAB",
+  "services": [
+    {
+      "name": "flintx-fluent-auth",
+      "version": "latest",
+      "port": "8081",
+      "ip": "172.21.0.2",
+      "parameters": [
+        "--mount source=flintxStorage,target=/config",
+        "-e mock.api.url=http://172.21.0.10:8089",
+        "-e flintx.platform.type=docker",
+        "-e quarkus.kubernetes-config.enabled=false",
+        "-e flintx.secret.folder=/config/",
+        "-e flintx.config.folder=/config/",
+        "-e quarkus.log.level=DEBUG"
+      ],
+      "secrets": [
+        "fluentmock-1.json",
+        "holger-1.json",
+        "eslaunch-1.json"
+      ],
+      "configs": [],
+      "mappings": []
+    },
+    {
+      "name": "flintx-fluent-event",
+      "version": "latest",
+      "port": "8082",
+      "ip": "172.21.0.3",
+      "parameters": [
+        "--mount source=flintxStorage,target=/config",
+        "-e mock.api.url=http://172.21.0.10:8089",
+        "-e fluent-auth-service.url=http://172.21.0.2:8081",
+        "-e flintx.platform.type=docker",
+        "-e quarkus.kubernetes-config.enabled=false",
+        "-e flintx.config.folder=/config/",
+        "-e quarkus.log.level=DEBUG"
+      ],
+      "secrets": [],
+      "configs": [
+        "fluentmock-1-event.json",
+        "holger-1-event.json",
+        "eslaunch-1-event.json"
+      ],
+      "mappings": []
+    },
+    {
+      "name": "flintx-fluent-graphql",
+      "version": "latest",
+      "port": "8083",
+      "ip": "172.21.0.4",
+      "parameters": [
+        "--mount source=flintxStorage,target=/config",
+        "-e fluent-auth-service.url=http://172.21.0.2:8081",
+        "-e mock.api.url=http://172.21.0.10:8089",
+        "-e flintx.platform.type=docker",
+        "-e quarkus.kubernetes-config.enabled=false",
+        "-e quarkus.log.level=DEBUG"
+      ],
+      "secrets": [],
+      "configs": [],
+      "mappings": []
+    },
+    {
+      "name": "flintx-fluent-webhook",
+      "version": "latest",
+      "port": "8084",
+      "ip": "172.21.0.5",
+      "parameters": [
+        "--mount source=flintxStorage,target=/config",
+        "-e fluent-order-service.url=http://172.21.0.8:8087",
+        "-e flintx.platform.type=docker",
+        "-e quarkus.kubernetes-config.enabled=false",
+        "-e flintx.config.folder=/config/",
+        "-e quarkus.log.level=DEBUG"
+      ],
+      "secrets": [],
+      "configs": [
+        "fluentmock-1-webhook.json",
+        "holger-1-webhook.json",
+        "eslaunch-1-webhook.json"
+      ],
+      "mappings": []
+    }
+  ]
+}

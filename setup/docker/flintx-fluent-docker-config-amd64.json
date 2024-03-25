@@ -32,7 +32,7 @@
         "-e quarkus.log.level=DEBUG"
       ],
       "secrets": [
-        "fluentmock-1.json"
+        "fluentmock-1"
       ],
       "configs": [],
       "mappings": []

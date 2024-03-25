@@ -5,6 +5,7 @@
         "name": "fluentmock-1-event"
     },
     "data": {
-        "event.verification.endpoint": "https://flintx.free.beeceptor.com/event"
+        "PRODUCT_CATALOGUE.event.verification.endpoint": "http://flintx-fluent-product/fluent/productCatalogue/verification?bridgeEndpoint=true",
+        "BATCH.event.verification.endpoint": "http://flintx-fluent-inventory/fluent/inventoryCatalogue/verification?bridgeEndpoint=true"
     }
 }

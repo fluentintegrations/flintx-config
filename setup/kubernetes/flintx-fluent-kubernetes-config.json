@@ -3,7 +3,7 @@
   "services": [
     {
       "name": "flintx-fluent-mock",
-      "version": "1.0.0-arm64",
+      "version": "latest",
       "port": "8089",
       "secrets": [],
       "configs": [],
@@ -11,29 +11,27 @@
     },
     {
       "name": "flintx-fluent-auth",
-      "version": "1.0.0-arm64",
+      "version": "latest",
       "port": "8081",
       "secrets": [
-        "fluentmock-1",
-        "holger-1"
+        "fluentmock-1.json"
       ],
       "configs": [],
       "mappings": []
     },
     {
       "name": "flintx-fluent-event",
-      "version": "1.0.0-arm64",
+      "version": "latest",
       "port": "8082",
       "secrets": [],
       "configs": [
-        "fluentmock-1-event",
-        "holger-1-event"
+        "fluentmock-1-event"
       ],
       "mappings": []
     },
     {
       "name": "flintx-fluent-graphql",
-      "version": "1.0.0-arm64",
+      "version": "latest",
       "port": "8083",
       "secrets": [],
       "configs": [],
@@ -41,57 +39,50 @@
     },
     {
       "name": "flintx-fluent-webhook",
-      "version": "1.0.0-arm64",
+      "version": "latest",
       "port": "8084",
       "secrets": [],
       "configs": [
-        "fluentmock-1-webhook",
-        "holger-1-webhook"
+        "fluentmock-1-webhook"
       ],
       "mappings": []
     },
     {
       "name": "flintx-fluent-inventory",
-      "version": "1.0.0-arm64",
+      "version": "latest",
       "port": "8085",
       "secrets": [],
       "configs": [
-        "fluentmock-1-inventory",
-        "holger-1-inventory"
+        "fluentmock-1-inventory"
       ],
       "mappings": []
     },
     {
       "name": "flintx-fluent-product",
-      "version": "1.0.0-arm64",
+      "version": "latest",
       "port": "8086",
       "secrets": [],
       "configs": [
-        "fluentmock-1-product",
-        "holger-1-product"
+        "fluentmock-1-product"
       ],
       "mappings": []
     },
     {
       "name": "flintx-fluent-order",
-      "version": "1.0.0-arm64",
+      "version": "latest",
       "port": "8087",
       "secrets": [],
       "configs": [
-        "fluentmock-1-order",
-        "holger-1-order"
+        "fluentmock-1-order"
       ],
       "mappings": []
     },
     {
       "name": "flintx-fluent-batch",
-      "version": "1.0.0-arm64",
+      "version": "latest",
       "port": "8088",
       "secrets": [],
-      "configs": [
-        "fluentmock-1-batch",
-        "holger-1-batch"
-      ],
+      "configs": [],
       "mappings": []
     }
   ]
