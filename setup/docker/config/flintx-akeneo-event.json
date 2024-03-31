@@ -1,4 +1,0 @@
-{
-  "event.endpoint": "http://172.21.1.2:8181/akeneo/product/event",
-  "akeneo.secret": ""
-}
